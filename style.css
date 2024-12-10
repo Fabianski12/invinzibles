@@ -4,52 +4,81 @@ body {
   padding: 0;
   background-color: #fdf3e3;
 }
+
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #f7a600;
-    padding: 10px 20px;
-  }
-  
-  .logo {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .logo img {
-    width: 190px; /* Dimensione del logo */
-    height: 190px;
-
-  }
-  
-
-.profile-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f7a600;
+  padding: 10px 20px;
+  height: 80px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-  
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.logo img {
+  width: 120px;
+  height: auto;
+}
+
+.navbar {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar button {
+  background-color: #ffffff;
+  border: 2px solid #f7a600;
+  color: #f7a600;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar button:hover {
+  background-color: #f7a600;
+  color: #ffffff;
+}
 
 .search-bar {
   display: flex;
   align-items: center;
+  gap: 10px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar input {
-  padding: 5px;
+  flex-grow: 1;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  outline: none;
   font-size: 16px;
 }
 
 .search-bar button {
-  background-color: #00c8c8;
+  background-color: #f7a600;
   border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
   color: white;
-  padding: 5px 10px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #e69500;
 }
 
 main {
@@ -61,17 +90,20 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
   text-align: center;
+  justify-items: center;
 }
 
 .product {
   background-color: white;
   border: 3px solid orange;
   border-radius: 50%;
-  padding: 10px;
+  padding: 20px;
+  max-width: 180px;
+  max-height: 230px;
 }
 
 .product img {
-  max-width: 100px;
+  max-width: 120px;
   border-radius: 50%;
 }
 

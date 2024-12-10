@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,37 +12,43 @@
         <div class="logo">
           <img src="Terranova.svg" alt="Logo Invinzibles">
         </div>
+        <nav class="navbar">
+          <button onclick="location.href='pagina1.html'">Home</button>
+          <button onclick="location.href='pagina2.html'">Prodotti</button>
+          <button onclick="location.href='pagina3.html'">Contatti</button>
+        </nav>
         <div class="search-bar">
-          <input type="text" placeholder="Search">
-          <button>Search</button>
+          <input type="text" id="searchBar" placeholder="Cerca prodotti...">
+          <button id="searchButton">Search</button>
         </div>
     </header>
-      
-  
-  <main>
-    <section class="products">
-      <div class="product">
-        <img src="vodka.jpg" alt="Vodka">
-        <p>VODKA</p>
-      </div>
-      <div class="product">
-        <img src="gin.webp" alt="Gin">
-        <p>GIN</p>
-      </div>
-      <div class="product featured">
-        <img src="sambuca.jpg" alt="Sambuca">
-        <p>SAMBUCA</p>
-      </div>
-      <div class="product">
-        <img src="adc.jpg" alt="Amaro del Capo">
-        <p>AMARO DEL CAPO</p>
-      </div>
-      <div class="product">
-        <img src="jager.webp" alt="Jager">
-        <p>JAGER</p>
-      </div>
-    </section>
-  </main>
+
+    <main>
+        <section class="products" id="productList">
+          <div class="product" data-name="vodka">
+            <img src="vodka.jpg" alt="Vodka">
+            <p>VODKA</p>
+          </div>
+          <div class="product" data-name="gin">
+            <img src="gin.webp" alt="Gin">
+            <p>GIN</p>
+          </div>
+          <div class="product featured" data-name="sambuca">
+            <img src="sambuca.jpg" alt="Sambuca">
+            <p>SAMBUCA</p>
+          </div>
+          <div class="product" data-name="amaro del capo">
+            <img src="adc.jpg" alt="Amaro del Capo">
+            <p>AMARO DEL CAPO</p>
+          </div>
+          <div class="product" data-name="jager">
+            <img src="jager.webp" alt="Jager">
+            <p>JAGER</p>
+          </div>
+        </section>
+        <p id="noResults" style="display: none; text-align: center; color: red; font-weight: bold;">Nessun alcolico trovato</p>
+    </main>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>

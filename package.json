@@ -1,0 +1,19 @@
+{
+  "name": "invinzibles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fabianski12/invinzibles.git"
+  },
+  "author": "Fabio Cutrupi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fabianski12/invinzibles/issues"
+  },
+  "homepage": "https://github.com/Fabianski12/invinzibles#readme"
+}

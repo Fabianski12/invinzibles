@@ -4,34 +4,35 @@ body {
   padding: 0;
   background-color: #fdf3e3;
 }
-
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f7a600;
-  padding: 10px 20px;
-}
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f7a600;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo img {
+    width: 190px; /* Dimensione del logo */
+    height: 190px;
+
+  }
+  
 
 .profile-icon {
   width: 40px;
   height: 40px;
-  background-color: black;
   border-radius: 50%;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #00c8c8;
-}
-
-.logo .z {
-  color: #f7a600;
-  background-color: #00c8c8;
-  padding: 5px;
-  border-radius: 50%;
-}
+  
 
 .search-bar {
   display: flex;

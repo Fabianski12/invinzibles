@@ -126,3 +126,92 @@ main {
   padding: 5px;
   font-size: 16px;
 }
+
+/* Stile per il contenitore del gioco */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  border: 3px solid #f7a600;
+  border-radius: 10px;
+}
+
+/* Stile per le immagini delle opzioni */
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 100%; /* Assicura che il contenitore si adatti */
+}
+
+.option img {
+  width: 100%;
+  max-width: 120px; /* Dimensione massima delle immagini */
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 2px solid #f7a600;
+  transition: transform 0.3s ease;
+}
+
+.option img:hover {
+  transform: scale(1.1);
+}
+
+/* Stile per la classifica */
+.score-board {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.score-board ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.score-board li {
+  background-color: #ffffff;
+  border: 2px solid #f7a600;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+/* Stile per l'intestazione del gioco */
+.game-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.game-header input {
+  margin: 10px 0;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.game-header button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f7a600;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.game-header button:hover {
+  background-color: #e69500;
+}
+
+#current-drink {
+  font-size: 20px;
+  margin: 15px 0;
+  color: #f7a600;
+  font-weight: bold;
+  text-align: center;
+}

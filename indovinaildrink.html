@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indovina il Drink</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="Terranova.svg" alt="Logo Invinzibles">
+    </div>
+    <nav class="navbar">
+      <button onclick="location.href='index.html'">Home</button>
+      <button onclick="location.href='prodotti.html'">Prodotti</button>
+      <button onclick="location.href='contatti.html'">Contatti</button>
+      <button onclick="location.href='indovina_drink.html'">Indovina il Drink</button>
+    </nav>
+  </header>
+  <main>
+    <div class="game-container">
+        <div class="game-header">
+          <h2>Indovina il drink!</h2>
+          <div id="user-info">
+            <input type="text" id="username" placeholder="Inserisci il tuo nome">
+            <button id="start-game">Inizia Gioco</button>
+          </div>
+          <p id="current-drink"></p> <!-- Nome del drink da indovinare -->
+        </div>
+        <div class="options">
+          <!-- Le immagini dei drink saranno generate dinamicamente -->
+        </div>
+        <div class="score-board">
+          <h3>Classifica</h3>
+          <ul id="score-list"></ul>
+        </div>
+      </div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const randomAPIUrl = "www.thecocktaildb.com/api/json/v1/1/random.php";
+    const randomAPIUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
     
   // Funzione per caricare i prodotti
   async function fetchProducts() {

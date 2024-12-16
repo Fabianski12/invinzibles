@@ -2,7 +2,8 @@ const drinks = [
     { name: "Vodka", image: "vodka.jpg" },
     { name: "Gin", image: "gin.webp" },
     { name: "Sambuca", image: "sambuca.jpg" },
-    { name: "Amaro del Capo", image: "adc.jpg" }
+    { name: "Amaro del Capo", image: "adc.jpg" },
+    { name: "Jager", image: "Jager.webp"}
   ];
   
   const startButton = document.getElementById("start-game");

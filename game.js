@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updateScoreBoard();
       generateDrink();
     } else {
+      showNotification("Sbagliato! Game Over.", "error"); // Notifica di sconfitta
       resetGame();
     }
   }

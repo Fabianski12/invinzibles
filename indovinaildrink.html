@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Indovina il Drink</title>
+  <title>Indovina l'Alcolico</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,13 +15,13 @@
       <button onclick="location.href='index.html'">Home</button>
       <button onclick="location.href='prodotti.html'">Prodotti</button>
       <button onclick="location.href='contatti.html'">Contatti</button>
-      <button onclick="location.href='indovina_drink.html'">Indovina il Drink</button>
+      <button onclick="location.href='indovina_drink.html'">Indovina l'Alcolico</button>
     </nav>
   </header>
   <main>
     <div class="game-container">
         <div class="game-header">
-          <h2>Indovina il drink!</h2>
+          <h2>Indovina l'Alcolico!</h2>
           <div id="user-info">
             <input type="text" id="username" placeholder="Inserisci il tuo nome">
             <button id="start-game">Inizia Gioco</button>
@@ -35,6 +35,7 @@
           <h3>Classifica</h3>
           <ul id="score-list"></ul>
         </div>
+        <div id="notification" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); background-color: #4caf50; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); z-index: 1000;"></div>
       </div>
   </main>
   <script src="game.js"></script>

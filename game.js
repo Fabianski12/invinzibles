@@ -17,17 +17,44 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentDrink = null;
   let score = 0;
 
+  // Funzione per caricare la classifica dal LocalStorage
+  function loadScoreboard() {
+    const scoreboard = JSON.parse(localStorage.getItem("scoreboard")) || [];
+    scoreList.innerHTML = "";
+    scoreboard.forEach(entry => {
+      const listItem = document.createElement("li");
+      listItem.textContent = `${entry.name}: ${entry.score} punti`;
+      scoreList.appendChild(listItem);
+    });
+  }
+
+  // Funzione per salvare il punteggio nella classifica
+  function saveScoreboard(username, newScore) {
+    const scoreboard = JSON.parse(localStorage.getItem("scoreboard")) || [];
+    const existingPlayer = scoreboard.find(entry => entry.name === username);
+
+    if (existingPlayer) {
+      existingPlayer.score = Math.max(existingPlayer.score, newScore);
+    } else {
+      scoreboard.push({ name: username, score: newScore });
+    }
+
+    scoreboard.sort((a, b) => b.score - a.score);
+    localStorage.setItem("scoreboard", JSON.stringify(scoreboard));
+    loadScoreboard();
+  }
+
   // Funzione per resettare il gioco
   function resetGame() {
+    const username = sessionStorage.getItem("username");
+    saveScoreboard(username, score); // Salva il punteggio finale
     showNotification("Hai perso! Il gioco è stato resettato.", "error"); // Notifica di sconfitta
     score = 0;
-    sessionStorage.removeItem("username");
-    usernameInput.value = "";
+    currentDrink = null;
     usernameInput.disabled = false;
     startButton.disabled = false;
     optionsContainer.innerHTML = "";
     currentDrinkDisplay.textContent = "";
-    scoreList.innerHTML = "";
   }
 
   // Quando si preme il pulsante "Start"
@@ -46,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Funzione per inizializzare il gioco
   function initializeGame() {
     generateDrink();
-    updateScoreBoard();
+    loadScoreboard();
   }
 
   // Funzione per generare un nuovo drink
@@ -56,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
     currentDrink = drinks[randomIndex];
     currentDrinkDisplay.textContent = `Indovina: ${currentDrink.name}`;
 
-    // Seleziona 4 drink casuali, inclusa la risposta corretta
     const otherDrinks = drinks.filter(drink => drink.name !== currentDrink.name);
     const shuffledOthers = otherDrinks.sort(() => Math.random() - 0.5).slice(0, 3);
     const options = [...shuffledOthers, currentDrink].sort(() => Math.random() - 0.5);
@@ -75,21 +101,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Funzione per gestire la scelta
   function handleChoice(selectedDrink) {
+    const username = sessionStorage.getItem("username");
     if (selectedDrink === currentDrink.name) {
       score++;
-      showNotification("Corretto! Punteggio aumentato.", "success"); // Notifica di successo
-      updateScoreBoard();
+      showNotification("Corretto! Punteggio aumentato.", "success");
       generateDrink();
     } else {
-      showNotification("Sbagliato! Game Over.", "error"); // Notifica di sconfitta
+      saveScoreboard(username, score); // Salva il punteggio prima di resettare
       resetGame();
     }
-  }
-
-  // Funzione per aggiornare la classifica
-  function updateScoreBoard() {
-    const username = sessionStorage.getItem("username");
-    scoreList.innerHTML = `<li>${username}: ${score} punti</li>`;
   }
 
   // Funzione per mostrare una notifica temporanea
@@ -97,16 +117,17 @@ document.addEventListener("DOMContentLoaded", () => {
     notificationContainer.textContent = message;
     notificationContainer.style.display = "block";
 
-    // Imposta lo stile in base al tipo (successo o errore)
     if (type === "success") {
       notificationContainer.style.backgroundColor = "#4caf50"; // Verde per successo
     } else if (type === "error") {
-      notificationContainer.style.backgroundColor = "#f44336"; // Rosso per errore  (non funzionante) (da sistemare)
+      notificationContainer.style.backgroundColor = "#f44336"; // Rosso per errore
     }
 
-    // Nasconde la notifica dopo 2 secondi
     setTimeout(() => {
       notificationContainer.style.display = "none";
     }, 2000);
   }
+
+  // Carica la classifica all'avvio della pagina
+  loadScoreboard();
 });

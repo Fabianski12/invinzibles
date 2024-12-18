@@ -53,7 +53,7 @@ main {
 
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: 20px;
   text-align: center;
   justify-items: center;
@@ -89,7 +89,7 @@ main {
 
 .button-container::before {
   content: "🍹";
-  font-size: 2rem;
+  font-size: 3rem;
   animation: shake 1.5s infinite;
 }
 

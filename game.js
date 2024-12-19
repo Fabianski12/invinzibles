@@ -12,12 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const optionsContainer = document.querySelector(".options");
   const scoreList = document.getElementById("score-list");
   const currentDrinkDisplay = document.getElementById("current-drink");
-  const notificationContainer = document.getElementById("notification"); // Contenitore per notifiche
+  const notificationContainer = document.getElementById("notification");
+  const timerContainer = document.createElement("div");
+
+  timerContainer.id = "timer-container";
+  currentDrinkDisplay.parentElement.insertBefore(timerContainer, currentDrinkDisplay.nextSibling);
 
   let currentDrink = null;
   let score = 0;
+  let timerInterval;
 
-  // Funzione per caricare la classifica dal LocalStorage
   function loadScoreboard() {
     const scoreboard = JSON.parse(localStorage.getItem("scoreboard")) || [];
     scoreList.innerHTML = "";
@@ -28,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Funzione per salvare il punteggio nella classifica
   function saveScoreboard(username, newScore) {
     const scoreboard = JSON.parse(localStorage.getItem("scoreboard")) || [];
     const existingPlayer = scoreboard.find(entry => entry.name === username);
@@ -44,20 +47,19 @@ document.addEventListener("DOMContentLoaded", () => {
     loadScoreboard();
   }
 
-  // Funzione per resettare il gioco
   function resetGame() {
     const username = sessionStorage.getItem("username");
-    saveScoreboard(username, score); // Salva il punteggio finale
-    showNotification("Hai perso! Il gioco è stato resettato.", "error"); // Notifica di sconfitta
+    saveScoreboard(username, score);
+    showNotification("Hai perso! Il gioco è stato resettato.", "error");
     score = 0;
     currentDrink = null;
     usernameInput.disabled = false;
     startButton.disabled = false;
     optionsContainer.innerHTML = "";
     currentDrinkDisplay.textContent = "";
+    clearTimer();
   }
 
-  // Quando si preme il pulsante "Start"
   startButton.addEventListener("click", () => {
     const username = usernameInput.value.trim();
     if (username) {
@@ -70,14 +72,54 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Funzione per inizializzare il gioco
   function initializeGame() {
     generateDrink();
     loadScoreboard();
   }
 
-  // Funzione per generare un nuovo drink
+  function startTimer() {
+    const totalDuration = 4;
+    let timeLeft = totalDuration;
+
+    timerContainer.innerHTML = `
+      <svg id="timer-circle" width="100" height="100">
+        <circle class="background" cx="50" cy="50" r="50" stroke="#ddd" stroke-width="10" fill="none"></circle>
+        <circle class="progress" cx="50" cy="50" r="50" stroke="red" stroke-width="10" fill="none"
+          stroke-dasharray="${2 * Math.PI * 50}" stroke-dashoffset="0"></circle>
+      </svg>
+      <div id="timer-text" style="position: absolute; top: 35%; left: 35%; font-size: 20px; font-weight: bold;">${timeLeft}</div>
+    `;
+
+    const progressCircle = timerContainer.querySelector(".progress");
+    const timerText = timerContainer.querySelector("#timer-text");
+    const circumference = 2 * Math.PI * 50;
+
+    progressCircle.style.transition = `stroke-dashoffset ${totalDuration}s linear`;
+    progressCircle.style.strokeDashoffset = 0;
+
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      timerText.textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        showNotification("Tempo scaduto! Game Over.", "error");
+        resetGame();
+      }
+    }, 1000);
+
+    setTimeout(() => {
+      progressCircle.style.strokeDashoffset = circumference;
+    }, 0);
+  }
+
+  function clearTimer() {
+    clearInterval(timerInterval);
+    timerContainer.innerHTML = "";
+  }
+
   function generateDrink() {
+    clearTimer();
     optionsContainer.innerHTML = "";
     const randomIndex = Math.floor(Math.random() * drinks.length);
     currentDrink = drinks[randomIndex];
@@ -93,13 +135,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const img = document.createElement("img");
       img.src = drink.image;
       img.alt = drink.name;
-      img.addEventListener("click", () => handleChoice(drink.name));
+      img.addEventListener("click", () => {
+        clearTimer();
+        handleChoice(drink.name);
+      });
       option.appendChild(img);
       optionsContainer.appendChild(option);
     });
+
+    startTimer();
   }
 
-  // Funzione per gestire la scelta
   function handleChoice(selectedDrink) {
     const username = sessionStorage.getItem("username");
     if (selectedDrink === currentDrink.name) {
@@ -107,20 +153,19 @@ document.addEventListener("DOMContentLoaded", () => {
       showNotification("Corretto! Punteggio aumentato.", "success");
       generateDrink();
     } else {
-      saveScoreboard(username, score); // Salva il punteggio prima di resettare
+      saveScoreboard(username, score);
       resetGame();
     }
   }
 
-  // Funzione per mostrare una notifica temporanea
   function showNotification(message, type) {
     notificationContainer.textContent = message;
     notificationContainer.style.display = "block";
 
     if (type === "success") {
-      notificationContainer.style.backgroundColor = "#4caf50"; // Verde per successo
+      notificationContainer.style.backgroundColor = "#4caf50";
     } else if (type === "error") {
-      notificationContainer.style.backgroundColor = "#f44336"; // Rosso per errore
+      notificationContainer.style.backgroundColor = "#f44336";
     }
 
     setTimeout(() => {
@@ -128,6 +173,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2000);
   }
 
-  // Carica la classifica all'avvio della pagina
   loadScoreboard();
 });

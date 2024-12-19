@@ -5,6 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Indovina l'Alcolico</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Timer container */
+    #timer-container {
+      margin: 10px 0;
+      position: relative;
+      height: 30px;
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    /* Timer bar */
+    #timer-bar {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: #ff5722;
+      transition: width 4s linear;
+    }
+
+    /* Timer text */
+    #timer-text {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      line-height: 30px;
+    }
+
+    /* Notification styling */
+    #notification {
+      display: none;
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    #notification.error {
+      background-color: #f44336; /* Red for errors */
+    }
+
+    #notification.success {
+      background-color: #4caf50; /* Green for success */
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -15,28 +72,40 @@
       <button onclick="location.href='index.html'">Home</button>
       <button onclick="location.href='prodotti.html'">Prodotti</button>
       <button onclick="location.href='random.html'">Mi Sento Fortunato</button>
-      <button onclick="location.href='indovina_drink.html'">Indovina l'Alcolico</button>
+      <button onclick="location.href='indovinaildrink.html'">Indovina l'Alcolico</button>
     </nav>
   </header>
   <main>
     <div class="game-container">
-        <div class="game-header">
-          <h2>Indovina l'Alcolico!</h2>
-          <div id="user-info">
-            <input type="text" id="username" placeholder="Inserisci il tuo nome">
-            <button id="start-game">Inizia Gioco</button>
-          </div>
-          <p id="current-drink"></p> <!-- Nome del drink da indovinare -->
+      <div class="game-header">
+        <h2>Indovina l'Alcolico!</h2>
+        <div id="user-info">
+          <input type="text" id="username" placeholder="Inserisci il tuo nome">
+          <button id="start-game">Inizia Gioco</button>
         </div>
-        <div class="options">
-          <!-- Le immagini dei drink saranno generate dinamicamente -->
+        <p id="current-drink"></p> <!-- Nome del drink da indovinare -->
+
+        <!-- Timer animato -->
+        <div id="timer-container">
+          <div id="timer-bar"></div>
+          <div id="timer-text"></div>
         </div>
-        <div class="score-board">
-          <h3>Classifica</h3>
-          <ul id="score-list"></ul>
-        </div>
-        <div id="notification" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); background-color: #4caf50; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); z-index: 1000;"></div>
       </div>
+
+      <!-- Contenitore delle opzioni (immagini dei drink) -->
+      <div class="options">
+        <!-- Le immagini dei drink saranno generate dinamicamente -->
+      </div>
+
+      <!-- Classifica -->
+      <div class="score-board">
+        <h3>Classifica</h3>
+        <ul id="score-list"></ul>
+      </div>
+
+      <!-- Notifiche -->
+      <div id="notification"></div>
+    </div>
   </main>
   <script src="game.js"></script>
 </body>

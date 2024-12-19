@@ -215,3 +215,38 @@ main {
   font-weight: bold;
   text-align: center;
 }
+
+/* Stile per il contenitore del timer */
+#timer-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  display: none;
+}
+
+/* Cerchio di sfondo del timer */
+#timer-circle .background {
+  stroke: #ddd;
+  stroke-width: 10;
+}
+
+/* Cerchio del progresso */
+#timer-circle .progress {
+  stroke: red;
+  stroke-width: 10;
+  stroke-dasharray: 314; /* Calcolato come 2 * PI * raggio (50) */
+  stroke-dashoffset: 314;
+  transition: stroke-dashoffset 1s linear;
+}
+
+/* Testo al centro del timer */
+#timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: #f7a600;
+}

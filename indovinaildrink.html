@@ -23,7 +23,7 @@
       height: 100%;
       width: 100%;
       background-color: #ff5722;
-      transition: width 4s linear;
+      transition: width 10s linear;
     }
 
     /* Timer text */
@@ -82,6 +82,13 @@
         <div id="user-info">
           <input type="text" id="username" placeholder="Inserisci il tuo nome">
           <button id="start-game">Inizia Gioco</button>
+        </div>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <!-- Timer container -->
+        <div id="timer-container">
+            <div id="timer-circle">
+                <span id="timer-text">10</span>
+            </div>
         </div>
         <p id="current-drink"></p> <!-- Nome del drink da indovinare -->
 

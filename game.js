@@ -1,11 +1,72 @@
 document.addEventListener("DOMContentLoaded", () => {
   const drinks = [
-    { name: "Vodka", image: "vodka.jpg" },
-    { name: "Gin", image: "gin.webp" },
-    { name: "Sambuca", image: "sambuca.jpg" },
-    { name: "Amaro del Capo", image: "adc.jpg" },
-    { name: "Jager", image: "jager.webp" },
-  ];
+      { name: "Vodka", image: "vodka.jpg" },
+      { name: "Gin", image: "gin.webp" },
+      { name: "Sambuca", image: "sambuca.jpg" },
+      { name: "Amaro del Capo", image: "adc.jpg" },
+      { name: "Jager", image: "jager.webp" },
+      { name: "Whisky Scozzese", image: "whisky_scozzese.png" },
+      { name: "Whisky Irlandese", image: "whisky_irlandese.png" },
+      { name: "Whisky Bourbon", image: "whisky_bourbon.png" },
+      { name: "Whisky Rye", image: "whisky_rye.png" },
+      { name: "Vodka Aromatizzata", image: "vodka_aromatizzata.png" },
+      { name: "Gin Old Tom", image: "gin_old_tom.png" },
+      { name: "Gin Plymouth", image: "gin_plymouth.png" },
+      { name: "Rum Bianco", image: "rum_bianco.png" },
+      { name: "Rum Scuro", image: "rum_scuro.png" },
+      { name: "Rum Oro", image: "rum_oro.png" },
+      { name: "Rum Speziato", image: "rum_speziato.png" },
+      { name: "Brandy", image: "brandy.png" },
+      { name: "Cognac", image: "cognac.png" },
+      { name: "Armagnac", image: "armagnac.png" },
+      { name: "Calvados", image: "calvados.png" },
+      { name: "Rum Agricole", image: "rum_agricole.png" },
+      { name: "Cachaça", image: "cachaca.png" },
+      { name: "Amari Fernet", image: "amaro_fernet.png" },
+      { name: "Amaro Lucano", image: "amaro_lucano.png" },
+      { name: "Amari Averna", image: "amaro_averna.png" },
+      { name: "Amari Montenegro", image: "amaro_montenegro.png" },
+      { name: "Liquore alla frutta Triple Sec", image: "liquore_triple_sec.png" },
+      { name: "Liquore alla frutta Grand Marnier", image: "liquore_grand_marnier.png" },
+      { name: "Liquore alla frutta Limoncello", image: "liquore_limoncello.png" },
+      { name: "Liquore cremoso Baileys", image: "liquore_bayles.png" },
+      { name: "Liquore cremoso Amarula", image: "liquore_amarula.png" },
+      { name: "Liquore cremoso Advocaat", image: "liquore_advocaat.png" },
+      { name: "Liquore speziato Anice", image: "liquore_anice.png" },
+      { name: "Liquore speziato Pastis", image: "liquore_pastis.png" },
+      { name: "Vermouth Rosso", image: "vermouth_rosso.png" },
+      { name: "Vermouth Bianco", image: "vermouth_bianco.png" },
+      { name: "Vermouth Dry", image: "vermouth_dry.png" },
+      { name: "Tequila Silver", image: "tequila_silver.png" },
+      { name: "Tequila Gold", image: "tequila_gold.png" },
+      { name: "Tequila Reposado", image: "tequila_reposado.png" },
+      { name: "Tequila Añejo", image: "tequila_anejo.png" },
+      { name: "Mezcal", image: "mezcal.png" },
+      { name: "Grappa", image: "grappa.png" },
+      { name: "Pisco", image: "pisco.png" },
+      { name: "Aquavite Scandinavia", image: "aquavite_scandinavia.png" },
+      { name: "Raki", image: "raki.png" },
+      { name: "Ouzo", image: "ouzo.png" },
+      { name: "Tsipouro", image: "tsipouro.png" },
+      { name: "Shochu", image: "shochu.png" },
+      { name: "Soju", image: "soju.png" },
+      { name: "Arrack", image: "arrack.png" },
+      { name: "Slivovitz", image: "slivovitz.png" },
+      { name: "Palinka", image: "palinka.png" },
+      { name: "Kirsch", image: "kirsch.png" },
+      { name: "Brennivín", image: "brennivin.png" },
+      { name: "Rum Overproof", image: "rum_overproof.png" },
+      { name: "Falernum", image: "falernum.png" },
+      { name: "Liquore al caffè Kahlúa", image: "kahlùa.png" },
+      { name: "Liquore al caffè Tia Maria", image: "tia_maria.png" },
+      { name: "Génépi", image: "genepi.png" },
+      { name: "Creme de Menthe", image: "creme_de_menthe.png" },
+      { name: "Creme de Cacao", image: "creme_de_cacao.png" },
+      { name: "Akvavit", image: "akvavit.png" },
+      { name: "Grain Whisky", image: "grain_whisky.png" },
+      { name: "Moonshine", image: "moonshine.png" },
+      { name: "Peppermint Schnapps", image: "peppermint_schnapp.png" },
+    ];
 
   const usernameInput = document.getElementById("username");
   const startButton = document.getElementById("start-game");
@@ -78,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startTimer() {
-    const totalDuration = 4;
+    const totalDuration = 10;
     let timeLeft = totalDuration;
 
     timerContainer.innerHTML = `
@@ -172,6 +233,33 @@ document.addEventListener("DOMContentLoaded", () => {
       notificationContainer.style.display = "none";
     }, 2000);
   }
-
+  let timerDuration = 10; // Timer duration in seconds
+  let timerRemaining = timerDuration;
+  
+  // Select timer elements
+  const timerText = document.getElementById('timer-text');
+  const timerCircle = document.getElementById('timer-circle');
+  
+  function startTimer() {
+    const interval = setInterval(() => {
+      // Update the timer text
+      timerRemaining--;
+      timerText.textContent = timerRemaining;
+  
+      // Update the timer circle (adjusting the gradient)
+      const percentage = ((timerDuration - timerRemaining) / timerDuration) * 100;
+      timerCircle.style.background = `conic-gradient(
+        red 0%,
+        yellow ${percentage / 2}%,
+        green ${percentage}%,
+        transparent ${percentage}%)`;
+  
+      // Stop the timer at 0
+      if (timerRemaining <= 0) {
+        clearInterval(interval);
+        timerText.textContent = "Tempo Scaduto!";
+      }
+    }, 1000);
+  }
   loadScoreboard();
 });

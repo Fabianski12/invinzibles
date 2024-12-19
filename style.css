@@ -250,3 +250,74 @@ main {
   font-weight: bold;
   color: #f7a600;
 }
+
+.productsrandom {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Riduci il valore minimo */
+  gap: 20px;
+  text-align: center;
+  justify-items: center;
+}
+
+.productsrandom img {
+  max-width: 600px; /* Ridimensiona la larghezza massima delle immagini */
+  height: auto;    /* Mantiene le proporzioni */
+  border-radius: 10px; /* Opzionale: per dare un aspetto arrotondato */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Opzionale: per un effetto visivo */
+}
+
+
+#randomButton {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#randomButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+#randomButton:active {
+  transform: scale(0.95);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-container::before {
+  content: "🍹";
+  font-size: 3rem;
+  animation: shake 1.5s infinite;
+}
+
+.button-container::after {
+  content: "🍹";
+  font-size: 3rem;
+  animation: shake 1.5s infinite;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+}

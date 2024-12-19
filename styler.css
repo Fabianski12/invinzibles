@@ -51,13 +51,21 @@ main {
   padding: 20px;
 }
 
-.products {
+.productsrandom {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Riduci il valore minimo */
   gap: 20px;
   text-align: center;
   justify-items: center;
 }
+
+.productsrandom img {
+  max-width: 600px; /* Ridimensiona la larghezza massima delle immagini */
+  height: auto;    /* Mantiene le proporzioni */
+  border-radius: 10px; /* Opzionale: per dare un aspetto arrotondato */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Opzionale: per un effetto visivo */
+}
+
 
 #randomButton {
   background: linear-gradient(90deg, #ff7e5f, #feb47b);
@@ -88,6 +96,12 @@ main {
 }
 
 .button-container::before {
+  content: "🍹";
+  font-size: 3rem;
+  animation: shake 1.5s infinite;
+}
+
+.button-container::after {
   content: "🍹";
   font-size: 3rem;
   animation: shake 1.5s infinite;

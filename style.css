@@ -1,8 +1,10 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Modak", serif;
+  color: #08b3f6;
   margin: 0;
   padding: 0;
   background-color: #fdf3e3;
+  font-size: 20px ;
 }
 
 header {
@@ -95,11 +97,11 @@ main {
 
 .product {
   background-color: white;
-  border: 3px solid orange;
+  border: 10px solid orange;
   border-radius: 50%;
   padding: 20px;
   max-width: 180px;
-  max-height: 230px;
+  max-height: 160px;
 }
 
 .product img {
@@ -110,7 +112,15 @@ main {
 .product p {
   margin-top: 10px;
   font-weight: bold;
+  font-style: Modak;
 }
+
+.modak-regular {
+  font-family: "Modak", serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
 
 .featured {
   position:relative;

@@ -19,7 +19,7 @@ body {
     padding: 10px 20px;
 }
 
-/* Stile per il logo */
+/* Stile per il logo prima è il testo, dopo la foto logo */
 .logo {
     display: flex;
     align-items: center;

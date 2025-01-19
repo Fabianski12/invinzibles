@@ -95,7 +95,14 @@ main {
   justify-items: center;
 }
 
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 2fr);
+  gap: 10px; /* Spazio tra gli elementi, puoi modificarlo secondo le tue esigenze */
+}
+
 .product {
+  text-align: center;
   background-color: white;
   border: 10px solid orange;
   border-radius: 50%;

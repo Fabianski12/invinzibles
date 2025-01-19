@@ -85,9 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderProductss(products) {
         const productList = document.getElementById("productLists");
         productList.innerHTML = ""; // Pulisce la lista esistente
-        productList.classList.add("product-grid"); // Aggiungi la classe per il layout a griglia
+        
 
         products.forEach(product => {
+            productList.classList.add("product-grid"); // Aggiungi la classe per il layout a griglia
             const productDiv = document.createElement("div");
             productDiv.classList.add("product");
             productDiv.setAttribute("data-name", product.strDrink.toLowerCase());

@@ -18,6 +18,11 @@ body {
     background-color: #000000;
     padding: 10px 20px;
 }
+/* SEZIONE DA SISTEMARE- FOTO SOTTO NAVBAR */
+.img-navbar{
+    width: 2000px;
+    height: 300px;
+}
 
 /* Stile per il logo prima è il testo, dopo la foto logo */
 .logo {

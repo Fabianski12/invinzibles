@@ -14,13 +14,15 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar">
             <div class="container-fluid">
                 <div class="logo">
-                    <img src="Logo DrinkLab.png" class="logo-img">
-                    DrinkLab
+                    <a href="nuovoindex.html" style="text-decoration: none; color: inherit;">
+                        <img src="Logo DrinkLab.png" class="logo-img">
+                        <span>DrinkLab</span>
+                    </a>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" style="color: #d5ab30; background-color: black;"></button>
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -55,7 +57,7 @@
                 <!-- Prima Card -->
                 <div class="col-6 col-md-2 col-lg-2">
                     <div class="card text-center" style="background-color: #d5ab30;">
-                        <img class="card-img-top" src="adc.jpg" alt="Card image">
+                        <img class="card-img-top" src="whisky_bourbon.png" alt="Card image">
                         <div class="card-body">
                             <h5 class="card-title">Drink</h5>
                         </div>
@@ -64,7 +66,7 @@
                 <!-- Seconda Card -->
                 <div class="col-6 col-md-2 col-lg-2">
                     <div class="card text-center" style="background-color: #d5ab30;">
-                        <img class="card-img-top" src="genepi.png" alt="Card image">
+                        <img class="card-img-top" src="cachaca.png" alt="Card image">
                         <div class="card-body">
                             <h5 class="card-title">Drink</h5>
                         </div>
@@ -73,7 +75,7 @@
                 <!-- Terza Card -->
                 <div class="col-6 col-md-2 col-lg-2">
                     <div class="card text-center" style="background-color: #d5ab30;">
-                        <img class="card-img-top" src="gin.jpg" alt="Card image">
+                        <img class="card-img-top" src="gin.webp" alt="Card image">
                         <div class="card-body">
                             <h5 class="card-title">Drink</h5>
                         </div>
@@ -82,7 +84,7 @@
                 <!-- Quarta Card -->
                 <div class="col-6 col-md-2 col-lg-2">
                     <div class="card text-center" style="background-color: #d5ab30;">
-                        <img class="card-img-top" src="margarita.jpg" alt="Card image">
+                        <img class="card-img-top" src="tia_maria.png" alt="Card image">
                         <div class="card-body">
                             <h5 class="card-title">Drink</h5>
                         </div>
@@ -91,10 +93,10 @@
             </div>
         </div>
         <div class="text-center mt-4">
-            <button class="btn btn-dark btn-lg" id="showMoreButton" onclick="fetchProducts()">Mostra Altro</button>
+        <button id="showMoreButton" type="button" class="btn btn-dark" style="color: #d5ab30; background-color: black; font-family: 'Alfa Slab One', cursive;">Visualizza tutti i drink</button>
         </div>
 
 
-        <script src="script.js"></script>
+        <script src="menu.js"></script>
     </body>
 </html>

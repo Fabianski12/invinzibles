@@ -136,6 +136,7 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    
 }
 /* Stile per drink.html */
 /* Stile per le scritte della pagina*/
@@ -156,23 +157,29 @@ h1 {
 }
 /* Stile per la lista degli ingredienti */
 p {
-    font-size: 16px;
+    font-size: 20px;
     color: #555;
+    text-align: center;
 }
 
 h3 {
     color: #444;
+    text-align: center;
+    font-size: 20px;
 }
 
-ul {
+/* Stile per la lista di ingredienti */
+ul{
+    text-align: center;
     list-style-type: none;
     padding: 0;
-}
-
-ul li {
     background: #e9ecef;
     margin: 5px 0;
     padding: 8px;
     border-radius: 5px;
+    font-size: 20px;
+
 }
+
+
 

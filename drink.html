@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettagli Drink</title>
+    <link rel="stylesheet" href="stylenuovoindex.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="drink-name"></h1>
+        <img id="drink-image" src="" alt="Drink Image" class="drink-img">
+        <p id="drink-description"></p>
+        <h3>Ingredienti:</h3>
+        <ul id="drink-ingredients"></ul>
+    </div>
+
+    <script>
+        async function fetchDrinkDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const drinkId = urlParams.get('id');
+
+            if (!drinkId) {
+                console.error("ID del drink non trovato!");
+                return;
+            }
+
+            const apiUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`;
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (!data.drinks) {
+                    console.error("Drink non trovato!");
+                    return;
+                }
+
+                const drink = data.drinks[0];
+
+                document.getElementById("drink-name").textContent = drink.strDrink;
+                document.getElementById("drink-image").src = drink.strDrinkThumb;
+                document.getElementById("drink-description").textContent = drink.strInstructions;
+
+                const ingredientsList = document.getElementById("drink-ingredients");
+                ingredientsList.innerHTML = "";
+
+                for (let i = 1; i <= 15; i++) {
+                    const ingredient = drink[`strIngredient${i}`];
+                    const measure = drink[`strMeasure${i}`];
+
+                    if (ingredient) {
+                        const li = document.createElement("li");
+                        li.textContent = `${measure ? measure : ""} ${ingredient}`;
+                        ingredientsList.appendChild(li);
+                    }
+                }
+            } catch (error) {
+                console.error("Errore nel caricamento dei dettagli del drink", error);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchDrinkDetails);
+    </script>
+    <script src="menu.js"></script>
+</body>
+</html>

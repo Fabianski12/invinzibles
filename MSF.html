@@ -14,6 +14,35 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
+        <style>
+            .app{
+                position: relative;
+                width: 50%;
+                height: 50%;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+
+            .img1{
+                width: 400px;
+                height: 400px;
+                border-radius: 50%;
+                animation-name: girarb;
+                animation-duration: 3s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+                display: inline-block;
+            }
+            @keyframes girarb{
+
+                from{
+                    transform:rotate(0deg);
+                }to{
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
         <nav class="navbar">
             <div class="container-fluid">
                 <div class="logo">
@@ -49,7 +78,11 @@
             <img src="Terranova.png" class="img-fluid" alt="Banner" style="height: 70%;width: 160%;">
         </div>
         <div class="container my-4">
+            <div id="app" class="app">
+                <img src="ruotafortuna.jpg" class="img1">
+            </div>
             <h1 class="text-center"><catalogo style="color: #d5ab30;">Mi Sento Fortunato</catalogo></h1>
+
             <div class="row justify-content-center">
                 <!-- Prima Card -->
                 <div class="row justify-content-center" id="fortunatoContainer">

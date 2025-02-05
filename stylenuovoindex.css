@@ -129,3 +129,35 @@ body {
     gap: 20px; /* Spaziatura tra card */
     justify-content: center; /* Centra le card */
 }
+
+/* Stile per drink.html */
+/* Stile per il contenitore della pagina */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+/* Stile per drink.html */
+/* Stile per le scritte della pagina*/
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color : #d5ab30;
+    text-align: center;
+}
+/* L'immagine al centro della pagina */
+.drink-img{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Stile per la lista degli ingredienti */
+.h3{
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    color :  #d5ab30;
+}

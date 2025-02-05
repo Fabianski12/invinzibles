@@ -49,29 +49,27 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
   
   
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const randomAPIUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 
     // Funzione per caricare i prodotti
-    async function fetchProductsrandom() {
+    async function fetchProducts() {
         try {
             const response = await fetch(randomAPIUrl);
             const data = await response.json();
             const products = data.drinks;
-            renderProductss(products);
+            renderProducts(products);
         } catch (error) {
             console.error("Errore nel caricamento dei prodotti", error);
         }
     }
 
     // Funzione per renderizzare i prodotti
-    function renderProductss(products) {
-        const productList = document.getElementById("productLists");
+    function renderProducts(products) {
+        const productList = document.getElementById("productList");
         productList.innerHTML = ""; // Pulisce la lista esistente
-        
 
         products.forEach(product => {
-            productList.classList.add("product-grid"); // Aggiungi la classe per il layout a griglia
             const productDiv = document.createElement("div");
             productDiv.classList.add("product");
             productDiv.setAttribute("data-name", product.strDrink.toLowerCase());
@@ -83,10 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Aggiungi evento al pulsante per chiamare l'API
-    const randomButton = document.getElementById("randomButton");
-    randomButton.addEventListener("click", async () => {
-        await fetchProductsrandom();
-    });
-    fetchProducts();
+    // Chiamata iniziale all'API quando la pagina viene caricata
+    await fetchProducts();
 });

@@ -169,7 +169,7 @@ h3 {
 }
 
 /* Stile per la lista di ingredienti */
-ul{
+.ingredients {
     text-align: center;
     list-style-type: none;
     padding: 0;

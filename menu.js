@@ -40,6 +40,9 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
                 }
             });
         });
+
+        // Nascondi il pulsante dopo il clic
+        document.getElementById("showMoreButton").style.display = "none";
     }
 
     fetchProducts();

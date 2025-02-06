@@ -181,6 +181,17 @@ body {
     font-size: 20px;
 
 }
-
+.form-control {
+    /* barra di ricerca in mezzo alla pagina */
+    display: flex;
+    margin: auto;
+}
+.btncatalogo {
+    /* bottone di ricerca */
+    background-color: #d5ab30;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+}
 
 

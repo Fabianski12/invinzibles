@@ -1,5 +1,22 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
     const randomAPIUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+    const roulette = document.querySelector(".img1"); // Ruota
+    const loadingText = document.getElementById("loadingText"); // Testo "Caricamento in corso..."
+    const fortunatoTitle = document.getElementById("fortunatoTitle"); // Titolo "Mi Sento Fortunato"
+    const appContainer = document.getElementById("app"); // Contenitore della ruota
+
+    // Dopo 3 secondi nasconde la ruota e il testo di caricamento, poi carica i drink
+    setTimeout(async () => {
+        if (roulette) roulette.style.display = "none"; // Nasconde la ruota
+        if (appContainer) appContainer.style.height = "0px"; // Riduce l'altezza della ruota
+        if (loadingText) loadingText.style.display = "none"; // Nasconde il testo di caricamento
+        if (fortunatoTitle) {
+            fortunatoTitle.style.display = "block"; // Mostra il titolo
+            fortunatoTitle.style.marginTop = "30px"; // Lo sposta leggermente in alto
+        }
+
+        await fetchProducts1(); // Avvia la chiamata all'API
+    }, 3000);
 
     async function fetchProducts1() {
         try {
@@ -33,6 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         container.innerHTML = ""; // Pulisce il contenuto precedente
+        container.style.marginTop = "30px"; // Sposta i drink leggermente in alto
 
         products.forEach(product => {
             const productCard = document.createElement("div");
@@ -62,6 +80,4 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         });
     }
-
-    await fetchProducts1();
 });

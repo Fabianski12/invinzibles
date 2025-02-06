@@ -29,7 +29,7 @@
                 height: 350px;
                 border-radius: 50%;
                 animation-name: girarb;
-                animation-duration: 3s;
+                animation-duration: 1.7s;
                 animation-iteration-count: infinite;
                 animation-timing-function: linear;
                 display: inline-block;
@@ -78,19 +78,23 @@
             <img src="Terranova.png" class="img-fluid" alt="Banner" style="height: 70%;width: 160%;">
         </div>
         <div class="container my-4">
+            <!-- Testo di caricamento -->
+            <h2 id="loadingText" class="text-center" style="color: #d5ab30;">Caricamento in corso...</h2>
+        
+            <!-- Ruota della fortuna -->
             <div id="app" class="app">
                 <img src="ruotafortuna.jpg" class="img1">
             </div>
-            <h1 class="text-center"><catalogo style="color: #d5ab30;">Mi Sento Fortunato</catalogo></h1>
-
+        
+            <!-- Titolo nascosto, verrà mostrato dopo 3 secondi -->
+            <h1 id="fortunatoTitle" class="text-center" style="color: #d5ab30; display: none; margin-top: 20px;">Mi Sento Fortunato</h1>
+        
             <div class="row justify-content-center">
-                <!-- Prima Card -->
-                <div class="row justify-content-center" id="fortunatoContainer">
+                <div class="row justify-content-center" id="fortunatoContainer" style="margin-top: 20px;">
                     <!-- Qui verranno caricati i drink casuali -->
                 </div>
-
             </div>
-        </div>
+        </div>        
         <script src="random.js"></script>
     </body>
 </html>

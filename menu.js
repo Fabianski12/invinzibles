@@ -14,10 +14,12 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
 
     function renderProducts(products) {
         const productList = document.querySelector('.container.my-4 .row');
+        productList.innerHTML = ""; // Pulisce i risultati precedenti
 
         products.forEach(product => {
             const productDiv = document.createElement("div");
-            productDiv.classList.add("col-6", "col-md-3", "col-lg-2");
+            productDiv.classList.add("col-6", "col-md-3", "col-lg-2", "drink-item");
+            productDiv.setAttribute("data-name", product.strDrink.toLowerCase()); // Aggiunge il nome in minuscolo per la ricerca
 
             productDiv.innerHTML = `
                 <div class="card text-center drink-card" style="background-color: #d5ab30; cursor: pointer;" data-id="${product.idDrink}">
@@ -41,15 +43,35 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
             });
         });
 
-        // Nascondi il pulsante dopo il clic
+        // Nasconde il pulsante dopo il clic
         document.getElementById("showMoreButton").style.display = "none";
     }
 
     fetchProducts();
 });
 
+// 🎯 Funzione per filtrare i drink dalla barra di ricerca
+function filterDrinks() {
+    const searchInput = document.getElementById("searchInput").value.toLowerCase();
+    const drinkItems = document.querySelectorAll(".drink-item");
 
+    drinkItems.forEach(item => {
+        const drinkName = item.getAttribute("data-name");
+        if (drinkName.includes(searchInput)) {
+            item.style.display = "block"; // Mostra i drink che corrispondono alla ricerca
+        } else {
+            item.style.display = "none"; // Nasconde gli altri
+        }
+    });
+}
 
+// Evento sul pulsante di ricerca
+document.getElementById("searchButton").addEventListener("click", filterDrinks);
 
-
-
+// Evento per premere "Enter" e attivare la ricerca
+document.getElementById("searchInput").addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Evita il refresh della pagina
+        filterDrinks();
+    }
+});

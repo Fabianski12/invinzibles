@@ -53,15 +53,18 @@
         <!--Inserimento card pagina home-->
         <div class="container my-4">
             <h2 class="text-center"><catalogo style="color: #d5ab30;">Catalogo</catalogo></h2><br>
+            <!-- Barra di ricerca -->
             <div class="d-flex justify-content-center align-items-center vh-10">
                 <form class="d-flex">
-                    <input class="form-control me-2" type="text" placeholder="Cerca" style="width: 250px;">
-                    <button class="btncatalogo" type="button"><b>Cerca</b></button>
+                    <input id="searchInput" class="form-control me-2" type="text" placeholder="Cerca" style="width: 250px;">
+                    <button id="searchButton" class="btncatalogo" type="button"><b>Cerca</b></button>
                 </form>
             </div>
+
             <div class="row justify-content-center">
                 <!-- Prima Card -->
-                <div class="col-6 col-md-2 col-lg-2">
+                <!-- Drink locale -->
+                <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="negroni">
                     <div class="card text-center" style="background-color: #d5ab30;">
                         <img class="card-img-top" src="Negroni_cocktail.jpg" alt="Card image">
                         <div class="card-body">
@@ -69,8 +72,9 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Seconda Card -->
-                <div class="col-6 col-md-2 col-lg-2">
+                <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="long island">
                     <div class="card text-center" style="background-color: #d5ab30;">
                         <img class="card-img-top" src="long island.jpg" alt="Card image">
                         <div class="card-body">
@@ -79,7 +83,7 @@
                     </div>
                 </div>
                 <!-- Terza Card -->
-                <div class="col-6 col-md-2 col-lg-2">
+                <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="sex on the beach">
                     <div class="card text-center" style="background-color: #d5ab30;">
                         <img class="card-img-top" src="sexonthebeach.jpg" alt="Card image">
                         <div class="card-body">
@@ -88,7 +92,7 @@
                     </div>
                 </div>
                 <!-- Quarta Card -->
-                <div class="col-6 col-md-2 col-lg-2">
+                <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="margarita">
                     <div class="card text-center" style="background-color: #d5ab30;">
                         <img class="card-img-top" src="margarita.jpg" alt="Card image">
                         <div class="card-body">

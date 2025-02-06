@@ -57,10 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
             productCard.classList.add("col-6", "col-md-2", "col-lg-2");
 
             productCard.innerHTML = `
-                <div class="card text-center drink-card" style="background-color: #d5ab30;" data-id="${product.idDrink}">
-                    <img class="card-img-top" src="${product.strDrinkThumb}" alt="${product.strDrink}">
-                    <div class="card-body">
-                        <h5 class="card-title">${product.strDrink}</h5>
+                <div class="card-random text-center drink-card" style="background-color: #d5ab30;" data-id="${product.idDrink}">
+                    <img class="card-random-img-top" src="${product.strDrinkThumb}" alt="${product.strDrink}">
+                    <div class="card-random-body">
+                        <h5 class="card-random-title">${product.strDrink}</h5>
                     </div>
                 </div>
             `;

@@ -193,5 +193,28 @@ body {
     border: none;
     border-radius: 5px;
 }
+.card-random {
+    /* card random */
+    width: 250px;
+    height: 300px;
+    border-radius: 10px;
+    /* card centrale alla pagina */
+    margin-top: 35px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 10%;
 
+}
+.card-random-img-top {
+    /* immagine card random */
+    height: 170px;
+    width: 170px;
+    object-fit: contain;
+    border-radius: 5px;
+    display: center;
+    margin-top: 35px;
+}
+.card-random-title{
+    margin-top: 20px;
+}
 

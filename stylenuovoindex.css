@@ -1,7 +1,69 @@
-/* Impostazioni generali per il corpo della pagina */
-body {
+/* Rimuoviamo tutti i vecchi stili e li sostituiamo con questi */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#fortunatoContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
     margin: 0;
+}
+
+.card-random {
+    width: 300px;
+    background-color: #d5ab30;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transform: none; /* Reset di eventuali transform */
+    position: static; /* Reset di eventuali position */
+    margin: 0; /* Reset di eventuali margin */
+}
+
+.card-random-img-top {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 0 auto;
+}
+
+.card-random-title {
     font-family: 'Alfa Slab One', cursive;
+    color: black;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Effetto hover separato */
+.card-random:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Animazione per il caricamento */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Stile per la scritta DrinkLab */
@@ -132,15 +194,6 @@ body {
 }
 
 /* Stile per drink.html */
-/* Stile per il contenitore della pagina */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Stile per drink.html */
 /* Stile per le scritte della pagina */
 .drinkname {
     font-size: 2rem;
@@ -203,29 +256,182 @@ body {
     color: #d5ab30;
 }
 
-.card-random {
-    /* card random */
-    width: 250px;
+.msf-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.msf-title {
+    font-family: 'Alfa Slab One', cursive;
+    color: #d5ab30;
+    font-size: 2.5rem;
+    margin: 40px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.loading-text {
+    font-family: 'Alfa Slab One', cursive;
+    color: #d5ab30;
+    animation: pulse 1.5s infinite;
+}
+
+.fortune-wheel {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.wheel-img {
+    width: 300px;
     height: 300px;
-    border-radius: 10px;
-    /* card centrale alla pagina */
-    margin-top: 35px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    margin: 10%;
+    border-radius: 50%;
+    animation: spin 1.7s infinite linear;
+    box-shadow: 0 0 20px rgba(213, 171, 48, 0.3);
 }
 
-.card-random-img-top {
-    /* immagine card random */
-    height: 170px;
-    width: 170px;
+.random-drink-card {
+    background-color: #d5ab30;
+    width: 300px;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.random-drink-card:hover {
+    transform: scale(1.05);
+}
+
+.random-drink-img {
+    width: 200px;
+    height: 200px;
     object-fit: contain;
-    border-radius: 5px;
-    display: center;
-    margin-top: 35px;
+    margin: 20px auto;
+    display: block;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card-random-title {
+.random-drink-title {
+    font-family: 'Alfa Slab One', cursive;
+    color: black;
+    font-size: 1.5rem;
     margin-top: 20px;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Stili per Mi Sento Fortunato */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.main-title {
+    font-family: 'Alfa Slab One', cursive;
+    color: #d5ab30;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.loading-text {
+    font-family: 'Alfa Slab One', cursive;
+    color: #d5ab30;
+    margin: 1rem 0;
+    animation: pulse 1.5s infinite;
+}
+
+.wheel-container {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wheel {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    animation: spin 1.7s infinite linear;
+    box-shadow: 0 0 20px rgba(213, 171, 48, 0.3);
+}
+
+.drink-section {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.drink-card {
+    width: 300px;
+    background-color: #d5ab30;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    margin: 0 auto;
+}
+
+.drink-card:hover {
+    transform: scale(1.05);
+}
+
+.drink-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 1rem auto;
+    display: block;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.drink-title {
+    font-family: 'Alfa Slab One', cursive;
+    color: black;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Stile per il banner */
+.banner-img {
+    width: 100%;
+    height: 300px; /* Altezza fissa più contenuta */
+    object-fit: cover; /* Mantiene le proporzioni coprendo lo spazio */
+    object-position: center; /* Centra l'immagine */
 }
 

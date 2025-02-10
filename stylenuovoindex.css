@@ -1,14 +1,15 @@
 /* Impostazioni generali per il corpo della pagina */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Alfa Slab One', cursive;
 }
+
 /* Stile per la scritta DrinkLab */
 .alfa-slab-one-regular {
     font-family: "Alfa Slab One", serif;
     font-weight: 400;
     font-style: normal;
-  }
+}
 
 /* Stile per la navbar */
 .navbar {
@@ -82,8 +83,7 @@ body {
     display: block;
 }
 
-
-/* CARD NELLA HOME*/
+/* CARD NELLA HOME */
 
 /* Contenitore delle card: layout orizzontale */
 .row {
@@ -91,10 +91,9 @@ body {
     flex-wrap: wrap; /* Permette il wrap su più righe se necessario */
     gap: 20px; /* Spaziatura tra le card */
     justify-content: center; /* Centra le card */
-  }
-  
-  /* Card: larghezza uniforme e stile */
-  /* Card container */
+}
+
+/* Card: larghezza uniforme e stile */
 .card {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -102,6 +101,7 @@ body {
     width: 100%; /* Imposta una larghezza relativa al contenitore */
     max-width: 300px; /* Limita la dimensione massima per evitare che siano troppo grandi */
     margin: 10%; /* Centra le card */
+    background-color: #d5ab30;
 }
 
 /* Riduci altezza immagine e imposta proporzioni */
@@ -116,6 +116,7 @@ body {
 .card-title {
     font-size: 1.2rem;
     font-weight: bold;
+    color: black;
 }
 
 /* Effetto hover */
@@ -137,18 +138,19 @@ body {
     margin: 0 auto;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    
 }
+
 /* Stile per drink.html */
-/* Stile per le scritte della pagina*/
+/* Stile per le scritte della pagina */
 .drinkname {
     font-size: 2rem;
     margin-bottom: 20px;
-    color : #d5ab30;
+    color: #d5ab30;
     text-align: center;
 }
+
 /* L'immagine al centro della pagina */
-.drink-img{
+.drink-img {
     display: block;
     margin: 0 auto;
     width: 100%;
@@ -156,6 +158,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 /* Stile per la lista degli ingredienti */
 .drinkdescription {
     font-size: 20px;
@@ -179,13 +182,14 @@ body {
     padding: 8px;
     border-radius: 5px;
     font-size: 20px;
-
 }
+
 .form-control {
     /* barra di ricerca in mezzo alla pagina */
     display: flex;
     margin: auto;
 }
+
 .btncatalogo {
     /* bottone di ricerca */
     background-color: #d5ab30;
@@ -193,6 +197,12 @@ body {
     border: none;
     border-radius: 5px;
 }
+
+.btncatalogo:hover {
+    background-color: #fff;
+    color: #d5ab30;
+}
+
 .card-random {
     /* card random */
     width: 250px;
@@ -203,8 +213,8 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     margin: 10%;
-
 }
+
 .card-random-img-top {
     /* immagine card random */
     height: 170px;
@@ -214,7 +224,8 @@ body {
     display: center;
     margin-top: 35px;
 }
-.card-random-title{
+
+.card-random-title {
     margin-top: 20px;
 }
 

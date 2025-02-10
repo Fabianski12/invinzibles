@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -19,15 +19,15 @@
                 <h1>DrinkLab</h1>
             </div>
             
-            <form class="login-form">
+            <form class="login-form" id="loginForm" onsubmit="return false;">
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" id="loginEmail" placeholder="Email" required>
                 </div>
                 
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
                 </div>
                 
                 <div class="remember-forgot">
@@ -38,10 +38,33 @@
                     <a href="#" class="forgot-password">Password dimenticata?</a>
                 </div>
                 
-                <button type="submit" class="login-btn">Accedi</button>
+                <button type="button" class="login-btn" onclick="handleLogin()">Accedi</button>
                 
                 <div class="register-link">
-                    Non hai un account? <a href="#">Registrati</a>
+                    Non hai un account? <a href="#" onclick="toggleForms()">Registrati</a>
+                </div>
+            </form>
+            
+            <form class="signup-form" id="signupForm" style="display: none;" onsubmit="return false;">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="signupEmail" placeholder="Email" required>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signupPassword" placeholder="Password" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signupConfirmPassword" placeholder="Conferma Password" required>
+                </div>
+                
+                <button type="button" class="login-btn" onclick="handleSignup()">Registrati</button>
+                
+                <div class="register-link">
+                    Hai già un account? <a href="#" onclick="toggleForms()">Accedi</a>
                 </div>
             </form>
             
@@ -53,5 +76,6 @@
             </div>
         </div>
     </div>
+    <script src="login.js"></script>
 </body>
 </html>

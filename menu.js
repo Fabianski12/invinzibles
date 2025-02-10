@@ -14,13 +14,19 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
 
     function renderProducts(products) {
         const productList = document.querySelector('.container.my-4 .row');
-        productList.innerHTML = ""; // Pulisce i risultati precedenti
-
+        const existingDrinks = Array.from(productList.children); // Salva i drink esistenti
+        productList.innerHTML = "";
+        
+        // Ripristina i drink pre-esistenti
+        existingDrinks.forEach(drink => {
+            productList.appendChild(drink);
+        });
+    
         products.forEach(product => {
             const productDiv = document.createElement("div");
-            productDiv.classList.add("col-6", "col-md-3", "col-lg-2", "drink-item");
-            productDiv.setAttribute("data-name", product.strDrink.toLowerCase()); // Aggiunge il nome in minuscolo per la ricerca
-
+            productDiv.classList.add("col-6", "col-md-3", "col-lg-2", "drink-item", "api-drink");
+            productDiv.setAttribute("data-name", product.strDrink.toLowerCase());
+            
             productDiv.innerHTML = `
                 <div class="card text-center drink-card" style="background-color: #d5ab30; cursor: pointer;" data-id="${product.idDrink}">
                     <img class="card-img-top" src="${product.strDrinkThumb}" alt="${product.strDrink}">
@@ -55,14 +61,21 @@ function filterDrinks() {
     const searchInput = document.getElementById("searchInput").value.toLowerCase();
     const drinkItems = document.querySelectorAll(".drink-item");
 
-    drinkItems.forEach(item => {
-        const drinkName = item.getAttribute("data-name");
-        if (drinkName.includes(searchInput)) {
-            item.style.display = "block"; // Mostra i drink che corrispondono alla ricerca
-        } else {
-            item.style.display = "none"; // Nasconde gli altri
-        }
-    });
+    if (searchInput === "") {
+        // Mostra tutti i drink quando la ricerca è vuota
+        drinkItems.forEach(item => {
+            item.style.display = "block";
+        });
+    } else {
+        drinkItems.forEach(item => {
+            const drinkName = item.getAttribute("data-name");
+            if (drinkName && drinkName.includes(searchInput)) {
+                item.style.display = "block";
+            } else {
+                item.style.display = "none";
+            }
+        });
+    }
 }
 
 // Evento sul pulsante di ricerca

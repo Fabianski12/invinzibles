@@ -174,3 +174,13 @@ body {
         align-items: flex-start;
     }
 }
+
+.signup-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.signup-form .input-group {
+    margin-bottom: 15px;
+}

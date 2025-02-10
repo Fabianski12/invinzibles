@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>DrinkLab</title>
+        <title>DrinkLab - Mi Sento Fortunato</title>
         <link rel="icon" href="Logo DrinkLab.png">
         <link rel="stylesheet" href="stylenuovoindex.css">
         <!-- Font per scritta DrinkLab -->
@@ -12,35 +12,71 @@
         <!-- Aggiunta di Bootstrap per la navbar responsive -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Aggiunta di Font Awesome per le icone -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     <body>
         <style>
-            .app{
+            .app {
                 position: relative;
                 width: 100%;
-                height: 50%;
+                height: 400px;  /* Altezza fissa per migliore allineamento */
+                display: flex;
                 justify-content: center;
                 align-items: center;
-                display: flex;
+                margin: 20px 0;
             }
 
-            .img1{
-                width: 350px;
-                height: 350px;
+            .img1 {
+                width: 300px;
+                height: 300px;
                 border-radius: 50%;
-                animation-name: girarb;
-                animation-duration: 1.7s;
-                animation-iteration-count: infinite;
-                animation-timing-function: linear;
-                display: inline-block;
+                animation: girarb 1.7s infinite linear;
+                box-shadow: 0 0 20px rgba(213, 171, 48, 0.3);
             }
-            @keyframes girarb{
 
-                from{
-                    transform:rotate(0deg);
-                }to{
-                    transform: rotate(360deg);
-                }
+            @keyframes girarb {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+
+            .msf-title {
+                font-family: 'Alfa Slab One', cursive;
+                color: #d5ab30;
+                text-align: center;
+                margin: 40px 0;
+                font-size: 2.5rem;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            }
+
+            #loadingText {
+                font-family: 'Alfa Slab One', cursive;
+                animation: pulse 1.5s infinite;
+            }
+
+            @keyframes pulse {
+                0% { opacity: 1; }
+                50% { opacity: 0.5; }
+                100% { opacity: 1; }
+            }
+
+            #fortunatoContainer {
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+            }
+
+            .card-random {
+                background-color: #d5ab30;
+                padding: 20px;
+                border-radius: 15px;
+                box-shadow: 0 0 20px rgba(213, 171, 48, 0.3);
+                text-align: center;
+                transition: transform 0.3s ease;
+            }
+
+            .card-random:hover {
+                transform: scale(1.05);
             }
         </style>
         <nav class="navbar">
@@ -51,9 +87,15 @@
                         <span>DrinkLab</span>
                     </a>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" style="color: #d5ab30; background-color: #d5ab30">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <!-- Icona Login -->
+                <div class="d-flex align-items-center">
+                    <a href="login.html" class="nav-link me-3" style="background-color: #d5ab30; padding: 0.25rem 0.75rem; border-radius: 0.375rem; height: 38px; width: 38px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user" style="color: rgba(0, 0, 0, 0.65); font-size: 1.25rem;"></i>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" style="color: #d5ab30; background-color: #d5ab30">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -73,27 +115,20 @@
             </div>
         </nav>
 
-        <!--Inserisci un'immagine che fa da banner alla pagina home di larghezza pari alla navbar-->
-        <div class="container-fluid" style="background-color:black;">
-            <img src="Terranova.png" class="img-fluid" alt="Banner" style="height: 70%;width: 160%;">
+        <!-- Banner -->
+        <div class="container-fluid p-0" style="background-color: black;">
+            <img src="Terranova.png" class="img-fluid banner-img" alt="Banner">
         </div>
         <div class="container my-4">
-            <!-- Testo di caricamento -->
+            <h1 class="msf-title">Mi Sento Fortunato</h1>
+            
             <h2 id="loadingText" class="text-center" style="color: #d5ab30;">Caricamento in corso...</h2>
         
-            <!-- Ruota della fortuna -->
             <div id="app" class="app">
-                <img src="ruotafortuna.jpg" class="img1">
+                <img src="ruotafortuna.jpg" class="img1" alt="Ruota della fortuna">
             </div>
         
-            <!-- Titolo nascosto, verrà mostrato dopo 3 secondi -->
-            <h1 id="fortunatoTitle" class="text-center" style="color: #d5ab30; display: none; margin-top: 20px;">Mi Sento Fortunato</h1>
-        
-            <div class="row justify-content-center">
-                <div class="row justify-content-center" id="fortunatoContainer" style="margin-top: 20px;">
-                    <!-- Qui verranno caricati i drink casuali -->
-                </div>
-            </div>
+            <div id="fortunatoContainer"></div>
         </div>        
         <script src="random.js"></script>
     </body>

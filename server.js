@@ -14,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
+app.use(express.static(__dirname));
 
 
 // Connessione MySQL
@@ -56,7 +57,10 @@ app.post('/api/login', async (req, res) => {
                 const match = await bcrypt.compare(password, results[0].password);
                 console.log('Risultato confronto password:', match);
                 if (match) {
-                    return res.json({ success: true });
+                    return res.json({ 
+                        success: true,
+                        email: results[0].email 
+                    });
                 } else {
                     return res.status(401).json({ success: false, error: 'Password non corretta' });
                 }
@@ -80,12 +84,40 @@ app.get('/login.js', (req, res) => {
 
 // Route per servire home.html
 app.get('/home.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '/home.html'));
+    res.sendFile(path.join(__dirname, 'home.html'));
 });
 
 // Route per servire stylelogin.css
 app.get('/stylelogin.css', (req, res) => {
     res.sendFile(path.join(__dirname, 'stylelogin.css'));
+});
+
+// Route per ottenere i dati dell'utente
+app.get('/api/user/data', (req, res) => {
+    try {
+        connection.query(
+            'SELECT email FROM users WHERE email = ?',
+            [req.query.email],
+            (err, results) => {
+                if (err) {
+                    console.error('Errore database:', err);
+                    return res.status(500).json({ error: 'Errore del database' });
+                }
+
+                if (results.length === 0) {
+                    return res.status(404).json({ error: 'Utente non trovato' });
+                }
+
+                res.json({
+                    email: results[0].email,
+                    currentDateTime: new Date().toLocaleString('it-IT')
+                });
+            }
+        );
+    } catch (error) {
+        console.error('Errore nel recupero dei dati utente:', error);
+        res.status(500).json({ error: 'Errore interno del server' });
+    }
 });
 
 function registerUser(email, password, callback) {

@@ -1,0 +1,99 @@
+/* Import del font */
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Alfa Slab One', cursive;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+h1 {
+    font-family: 'Alfa Slab One', cursive;
+    color: #000000;
+    font-size: 2.5rem;
+    margin: 40px 0;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+    background-color: #d5ab30;
+    width: 500px;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.user-info:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.user-info p {
+    margin: 15px 0;
+    font-size: 1.2em;
+    color: #000000;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.user-info strong {
+    min-width: 180px;
+    color: #000000;
+    margin-right: 20px;
+}
+
+.user-info span {
+    color: #000000;
+}
+
+/* Stile del pulsante come in stylenuovoindex.css */
+button {
+    background-color: #d5ab30;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 30px;
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #ffffff;
+    color: #d5ab30;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Animazione per il caricamento della pagina */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 

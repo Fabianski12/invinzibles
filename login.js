@@ -57,7 +57,11 @@ function loginUser(email, password, callback) {
                 const match = await bcrypt.compare(password, user.password);
                 
                 if (match) {
-                    callback({ success: true, message: 'Login effettuato' });
+                    callback({ 
+                        success: true, 
+                        message: 'Login effettuato',
+                        email: user.email  // Aggiungiamo l'email alla risposta
+                    });
                 } else {
                     callback({ error: 'Password non corretta' });
                 }
@@ -83,6 +87,8 @@ function handleLogin() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            // Salviamo l'email nel localStorage
+            localStorage.setItem('userEmail', email);
             alert('Login effettuato con successo!');
             window.location.replace('/home.html');
         } else {

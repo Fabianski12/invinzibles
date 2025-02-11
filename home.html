@@ -2,18 +2,76 @@
 <html>
 <head>
     <title>Home Page</title>
+    <link rel="stylesheet" href="/info.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <style>
+        .user-info {
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .password {
+            letter-spacing: 2px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Benvenuto nella tua area personale!</h1>
-    <p>Sei loggato con successo.</p>
-    
-    <button onclick="logout()">Logout</button>
+    <div class="container">
+        <h1>Area Personale</h1>
+        
+        <div class="user-info">
+            <p>
+                <strong>Email:</strong>
+                <span id="userEmail"></span>
+            </p>
+            <p>
+                <strong>Data e Ora:</strong>
+                <span id="lastLogin"></span>
+            </p>
+        </div>
+
+        <button onclick="logout()">Logout</button>
+    </div>
 
     <script>
+        // Funzione per caricare i dati dell'utente dal database
+        async function loadUserData() {
+            try {
+                const userEmail = localStorage.getItem('userEmail');
+                console.log("Email nel localStorage:", userEmail); // Debug
+                
+                if (!userEmail) {
+                    throw new Error('Email non trovata nel localStorage');
+                }
+
+                const response = await fetch(`/api/user/data?email=${encodeURIComponent(userEmail)}`);
+                console.log("Risposta server:", response); // Debug
+
+                if (!response.ok) {
+                    throw new Error(`Errore server: ${response.status}`);
+                }
+
+                const userData = await response.json();
+                console.log("Dati ricevuti:", userData); // Debug
+
+                document.getElementById('userEmail').textContent = userData.email;
+                document.getElementById('lastLogin').textContent = userData.currentDateTime;
+            } catch (error) {
+                console.error('Errore dettagliato:', error);
+                alert('Errore: ' + error.message);
+            }
+        }
+
         function logout() {
             // Per ora facciamo un semplice reindirizzamento al login
-            window.location.href = '/';
+            window.location.href = '/nuovoindex.html';
         }
+
+        // Carica i dati dell'utente quando la pagina si apre
+        loadUserData();
     </script>
 </body>
 </html> 

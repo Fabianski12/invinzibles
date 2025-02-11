@@ -14,7 +14,7 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
 
     function renderProducts(products) {
         const productList = document.querySelector('.container.my-4 .row');
-        const existingDrinks = Array.from(productList.children); // Salva i drink esistenti
+        const existingDrinks = Array.from(productList.children);
         productList.innerHTML = "";
         
         // Ripristina i drink pre-esistenti
@@ -24,14 +24,17 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
     
         products.forEach(product => {
             const productDiv = document.createElement("div");
-            productDiv.classList.add("col-6", "col-md-3", "col-lg-2", "drink-item", "api-drink");
+            productDiv.classList.add("col-6", "col-md-2", "col-lg-2", "drink-item");
             productDiv.setAttribute("data-name", product.strDrink.toLowerCase());
             
             productDiv.innerHTML = `
-                <div class="card text-center drink-card" style="background-color: #d5ab30; cursor: pointer;" data-id="${product.idDrink}">
+                <div class="card text-center">
                     <img class="card-img-top" src="${product.strDrinkThumb}" alt="${product.strDrink}">
                     <div class="card-body">
                         <h5 class="card-title">${product.strDrink}</h5>
+                        <div class="favorite-icon">
+                            <i class="far fa-heart"></i>
+                        </div>
                     </div>
                 </div>
             `;
@@ -39,12 +42,30 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
             productList.appendChild(productDiv);
         });
 
-        // Aggiungo gli eventi di click DOPO che le card sono state create
-        document.querySelectorAll(".drink-card").forEach(card => {
+        // Aggiungi gli eventi per i preferiti alle nuove card
+        const favoriteIcons = document.querySelectorAll('.favorite-icon');
+        favoriteIcons.forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); // Previene il click sulla card
+                if (!isUserLoggedIn()) {
+                    showNotification('Devi effettuare il login per salvare i drink preferiti');
+                    return;
+                }
+                const card = icon.closest('.card');
+                const drinkName = card.querySelector('.card-title').textContent;
+                const imgSrc = card.querySelector('.card-img-top').src;
+                const isNowFavorite = toggleFavorite(drinkName, imgSrc);
+                updateFavoriteIcon(icon, isNowFavorite);
+            });
+        });
+
+        // Aggiungi gli eventi di click per la navigazione
+        document.querySelectorAll(".card").forEach(card => {
             card.addEventListener("click", (event) => {
-                const drinkId = event.currentTarget.getAttribute("data-id");
-                if (drinkId) {
-                    window.location.href = `drink.html?id=${drinkId}`;
+                if (!event.target.closest('.favorite-icon')) {
+                    const drinkName = card.querySelector('.card-title').textContent;
+                    window.location.href = `drink.html?name=${encodeURIComponent(drinkName)}`;
                 }
             });
         });
@@ -88,3 +109,49 @@ document.getElementById("searchInput").addEventListener("keypress", (event) => {
         filterDrinks();
     }
 });
+
+function createDrinkCard(drink) {
+    return `
+        <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="${drink.strDrink.toLowerCase()}">
+            <div class="card text-center">
+                <img class="card-img-top" src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
+                <div class="card-body">
+                    <h5 class="card-title">${drink.strDrink}</h5>
+                    <div class="favorite-icon">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Quando aggiungi le nuove card al container
+function displayDrinks(drinks) {
+    const container = document.getElementById('drinksContainer');
+    drinks.forEach(drink => {
+        container.innerHTML += createDrinkCard(drink);
+    });
+    
+    // Reinizializza i preferiti per le nuove card
+    initializeFavorites();
+}
+
+// Funzione per mostrare la notifica
+function showNotification(message) {
+    // Rimuovi eventuali notifiche esistenti
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    // Rimuovi la notifica dopo 3 secondi
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}

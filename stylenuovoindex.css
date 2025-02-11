@@ -147,50 +147,178 @@
 
 /* CARD NELLA HOME */
 
-/* Contenitore delle card: layout orizzontale */
+/* Stili per il contenitore delle card */
 .row {
-    display: flex; /* Allinea le card in orizzontale */
-    flex-wrap: wrap; /* Permette il wrap su più righe se necessario */
-    gap: 20px; /* Spaziatura tra le card */
-    justify-content: center; /* Centra le card */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 20px 0;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Card: larghezza uniforme e stile */
+.drink-item {
+    flex: 0 0 calc(25% - 30px); /* 4 card per riga con gap di 30px */
+    min-width: 250px;
+    max-width: 280px;
+}
+
+/* Stili per le card */
 .card {
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 100%; /* Imposta una larghezza relativa al contenitore */
-    max-width: 300px; /* Limita la dimensione massima per evitare che siano troppo grandi */
-    margin: 10%; /* Centra le card */
+    cursor: pointer;
+    height: 100%;
+    border-radius: 12px;
+    background-color: #d5ab30;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(213, 171, 48, 0.25);
+}
+
+.card-img-top {
+    height: 200px;
+    width: 100%;
+    object-fit: contain;
+    padding: 15px;
+    background-color: white;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     background-color: #d5ab30;
 }
 
-/* Riduci altezza immagine e imposta proporzioni */
-.card-img-top {
-    height: 150px; /* Altezza proporzionata */
-    object-fit: contain; /* Mostra l'immagine intera senza tagliarla */
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-/* Allinea il testo e spaziatura */
 .card-title {
+    margin: 0;
     font-size: 1.2rem;
-    font-weight: bold;
-    color: black;
+    font-weight: 600;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    text-align: center;
 }
 
-/* Effetto hover */
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+/* Stili per l'icona preferiti */
+.favorite-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsività */
-.row {
-    gap: 20px; /* Spaziatura tra card */
-    justify-content: center; /* Centra le card */
+.favorite-icon:hover {
+    transform: scale(1.1);
+}
+
+.favorite-icon i {
+    color: #d5ab30;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.favorite-icon.active i {
+    color: #ff3b30;
+}
+
+/* Media queries per la responsività */
+@media (max-width: 1200px) {
+    .drink-item {
+        flex: 0 0 calc(33.333% - 30px);
+    }
+}
+
+@media (max-width: 992px) {
+    .drink-item {
+        flex: 0 0 calc(50% - 30px);
+    }
+}
+
+@media (max-width: 576px) {
+    .drink-item {
+        flex: 0 0 calc(100% - 30px);
+    }
+}
+
+/* Stili per la notifica */
+.notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.95);
+    color: white;
+    padding: 16px 25px;
+    border-radius: 12px;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    z-index: 1000;
+    animation: slideUp 0.3s ease-out;
+    pointer-events: none;
+    min-width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid #d5ab30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.notification::before {
+    content: '\f05a';  /* Icona info di Font Awesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #d5ab30;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 100px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+/* Aggiungi un effetto pulse leggero */
+@keyframes softPulse {
+    0% { transform: translate(-50%, 0) scale(1); }
+    50% { transform: translate(-50%, 0) scale(1.02); }
+    100% { transform: translate(-50%, 0) scale(1); }
+}
+
+.notification {
+    animation: 
+        slideUp 0.3s ease-out,
+        softPulse 2s ease-in-out infinite;
 }
 
 /* Stile per drink.html */
@@ -433,5 +561,40 @@
     height: 300px; /* Altezza fissa più contenuta */
     object-fit: cover; /* Mantiene le proporzioni coprendo lo spazio */
     object-position: center; /* Centra l'immagine */
+}
+
+.favorite-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.favorite-icon i {
+    color: #d5ab30;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.favorite-icon.active i {
+    color: red;
+}
+
+/* Stili per la pagina preferiti */
+#noFavoritesMessage {
+    padding: 2rem;
+    background-color: rgba(213, 171, 48, 0.1);
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 600px;
 }
 

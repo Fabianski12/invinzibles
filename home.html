@@ -125,8 +125,11 @@
         }
 
         function logout() {
-            // Per ora facciamo un semplice reindirizzamento al login
-            window.location.href = '/index.html';
+            // Rimuoviamo solo lo stato di login mantenendo i dati dell'account
+            localStorage.removeItem('isLoggedIn');
+            
+            // Reindirizza alla pagina di login
+            window.location.href = 'login.html';
         }
 
         // Carica i dati dell'utente quando la pagina si apre

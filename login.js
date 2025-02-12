@@ -87,8 +87,9 @@ function handleLogin() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Salviamo l'email nel localStorage
+            // Salviamo sia l'email che lo stato del login
             localStorage.setItem('userEmail', email);
+            localStorage.setItem('userLoggedIn', 'true');
             alert('Login effettuato con successo!');
             window.location.replace('/home.html');
         } else {
@@ -130,6 +131,11 @@ function handleRegister() {
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+    // Verifica se l'utente è già loggato
+    if (localStorage.getItem('userLoggedIn') === 'true') {
+        window.location.replace('/home.html');
+    }
+
     // Per la registrazione
     document.getElementById('registerForm').addEventListener('submit', handleRegister);
 
@@ -207,4 +213,11 @@ function handleSignup() {
         alert('Errore di connessione');
         console.error('Errore:', error);
     });
+}
+
+// Aggiungiamo anche una funzione per il logout
+function handleLogout() {
+    localStorage.removeItem('userEmail');
+    localStorage.setItem('userLoggedIn', 'false');
+    window.location.replace('/login.html');
 }

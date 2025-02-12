@@ -14,6 +14,16 @@ function saveFavorites(favorites) {
     localStorage.setItem('favorites', JSON.stringify(favorites));
 }
 
+// Aggiorna il contatore dei preferiti
+function updateFavoritesCounter() {
+    const counter = document.getElementById('favoritesCounter');
+    if (counter) {
+        const count = getFavorites().length;
+        counter.textContent = count;
+        counter.style.display = count > 0 ? 'inline' : 'none';
+    }
+}
+
 // Aggiungi o rimuovi un drink dai preferiti
 function toggleFavorite(drinkName, imgSrc) {
     if (!isUserLoggedIn()) {
@@ -27,10 +37,12 @@ function toggleFavorite(drinkName, imgSrc) {
     if (index === -1) {
         favorites.push({ name: drinkName, image: imgSrc });
         saveFavorites(favorites);
+        updateFavoritesCounter();
         return true;
     } else {
         favorites.splice(index, 1);
         saveFavorites(favorites);
+        updateFavoritesCounter();
         return false;
     }
 }
@@ -53,6 +65,8 @@ function updateFavoriteIcon(element, isFavorite) {
 function initializeFavorites() {
     const favoriteIcons = document.querySelectorAll('.favorite-icon');
     const favorites = getFavorites();
+    
+    updateFavoritesCounter();
 
     favoriteIcons.forEach(icon => {
         const card = icon.closest('.card');
@@ -150,4 +164,5 @@ function showNotification(message) {
             notification.remove();
         }, 300);
     }, 2700);
+    
 } 

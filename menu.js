@@ -155,3 +155,34 @@ function showNotification(message) {
         notification.remove();
     }, 3000);
 }
+
+// Funzione per cercare drink
+function searchDrinks() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const drinks = document.querySelectorAll('.drink-item');
+    let found = false;
+
+    drinks.forEach(drink => {
+        const drinkName = drink.getAttribute('data-name').toLowerCase();
+        if (drinkName.includes(searchInput)) {
+            drink.style.display = 'block'; // Mostra il drink
+            found = true;
+        } else {
+            drink.style.display = 'none'; // Nascondi il drink
+        }
+    });
+
+    // Mostra la notifica se non ci sono risultati
+    const notification = document.getElementById('noDrinkNotification');
+    if (!found) {
+        notification.style.display = 'flex'; // Mostra la notifica
+        setTimeout(() => {
+            notification.style.display = 'none'; // Nascondi dopo 3 secondi
+        }, 3000);
+    } else {
+        notification.style.display = 'none'; // Nascondi la notifica se ci sono risultati
+    }
+}
+
+// Aggiungi l'evento al bottone di ricerca
+document.getElementById('searchButton').addEventListener('click', searchDrinks);

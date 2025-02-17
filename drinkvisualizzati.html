@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>DrinkLab</title>
+        <title>Drink Visualizzati - DrinkLab</title>
         <link rel="icon" href="Logo DrinkLab.png">
         <link rel="stylesheet" href="stylenuovoindex.css">
         <!-- Font per scritta DrinkLab -->
@@ -28,7 +28,6 @@
                 <div class="d-flex align-items-center">
                     <a href="login.html" class="nav-link me-3" style="background-color: #d5ab30; padding: 0.25rem 0.75rem; border-radius: 0.375rem; height: 38px; width: 38px; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-user" style="color: rgba(0, 0, 0, 0.65); font-size: 1.25rem;"></i>
-
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" style="color: #d5ab30; background-color: #d5ab30">
                         <span class="navbar-toggler-icon"></span>
@@ -56,83 +55,22 @@
             </div>
         </nav>
 
-        <!--Inserisci un'immagine che fa da banner alla pagina home di larghezza pari alla navbar-->
-        <div class="container-fluid" style="background-color:black;">
-            <img src="Terranova.png" class="img-fluid" alt="Banner" style="height: 70%;width: 160%;">
-        </div>
-
-        <!--Inserimento card pagina home-->
         <div class="container my-4">
-            <h2 class="text-center"><catalogo style="color: #d5ab30;">Catalogo</catalogo></h2><br>
-            <!-- Barra di ricerca -->
-            <div class="d-flex justify-content-center align-items-center vh-10">
-                <form class="d-flex">
-                    <input id="searchInput" class="form-control me-2" type="text" placeholder="Cerca" style="width: 250px;">
-                    <button id="searchButton" class="btncatalogo" type="button"><b>Cerca</b></button>
-                </form>
-            </div>
-
-            <div class="row justify-content-center" id="drinksContainer">
-                <!-- Prima Card -->
+            <h2 class="text-center" style="color: #d5ab30;">Drink Visualizzati Recentemente</h2><br>
+            <div class="row justify-content-center" id="recentDrinksContainer">
+                <!-- Qui verranno visualizzati i drink recenti -->
+                <!-- Esempio di drink visualizzato -->
                 <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="negroni">
                     <div class="card text-center">
                         <img class="card-img-top" src="Negroni_cocktail.jpg" alt="Card image">
                         <div class="card-body">
                             <h5 class="card-title">Negroni</h5>
-                            <div class="favorite-icon">
-                                <i class="far fa-heart"></i>
-                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Seconda Card -->
-                <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="long island">
-                    <div class="card text-center">
-                        <img class="card-img-top" src="long island.jpg" alt="Card image">
-                        <div class="card-body">
-                            <h5 class="card-title">Long Island</h5>
-                            <div class="favorite-icon">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Terza Card -->
-                <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="sex on the beach">
-                    <div class="card text-center">
-                        <img class="card-img-top" src="sexonthebeach.jpg" alt="Card image">
-                        <div class="card-body">
-                            <h5 class="card-title">Sex on the Beach</h5>
-                            <div class="favorite-icon">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quarta Card -->
-                <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="margarita">
-                    <div class="card text-center">
-                        <img class="card-img-top" src="margarita.jpg" alt="Card image">
-                        <div class="card-body">
-                            <h5 class="card-title">Margarita</h5>
-                            <div class="favorite-icon">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Aggiungi qui altri drink visualizzati -->
             </div>
-        </div>
-        <div class="text-center mt-4">
-            <button id="showMoreButton" type="button" class="btn btn-dark" style="color: #d5ab30; background-color: black; font-family: 'Alfa Slab One', cursive;">Visualizza tutti i drink</button>
-        </div>
-
-        <!-- Notifica per drink non trovati -->
-        <div id="noDrinkNotification" class="notification" style="display: none;">
-            Nessun drink trovato con questo nome.
         </div>
 
         <script src="menu.js"></script>

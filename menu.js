@@ -12,7 +12,46 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
         }
     }
 
-    function renderProducts(products) {
+    async function fetchDrinkDetails(drinkId) {
+        try {
+            const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`);
+            const data = await response.json();
+            return data.drinks[0];
+        } catch (error) {
+            console.error("Errore nel caricamento dei dettagli del drink", error);
+            return null;
+        }
+    }
+
+    function getIngredientsList(drink) {
+        const ingredients = [];
+        for (let i = 1; i <= 15; i++) {
+            const ingredient = drink[`strIngredient${i}`];
+            const measure = drink[`strMeasure${i}`];
+            if (ingredient) {
+                ingredients.push(`${measure || ''} ${ingredient}`);
+            }
+        }
+        return ingredients;
+    }
+
+    function createDrinkCard(drink, ingredients) {
+        return `
+            <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="${drink.strDrink.toLowerCase()}" data-drink-id="${drink.idDrink}">
+                <div class="card text-center">
+                    <img class="card-img-top" src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
+                    <div class="card-body">
+                        <h5 class="card-title">${drink.strDrink}</h5>
+                        <div class="favorite-icon">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    async function renderProducts(products) {
         const productList = document.querySelector('.container.my-4 .row');
         const existingDrinks = Array.from(productList.children);
         productList.innerHTML = "";
@@ -21,25 +60,10 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
         existingDrinks.forEach(drink => {
             productList.appendChild(drink);
         });
-    
-        products.forEach(product => {
-            const productDiv = document.createElement("div");
-            productDiv.classList.add("col-6", "col-md-2", "col-lg-2", "drink-item");
-            productDiv.setAttribute("data-name", product.strDrink.toLowerCase());
-            
-            productDiv.innerHTML = `
-                <div class="card text-center">
-                    <img class="card-img-top" src="${product.strDrinkThumb}" alt="${product.strDrink}">
-                    <div class="card-body">
-                        <h5 class="card-title">${product.strDrink}</h5>
-                        <div class="favorite-icon">
-                            <i class="far fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-            `;
 
-            productList.appendChild(productDiv);
+        products.forEach(product => {
+            const drinkHtml = createDrinkCard(product);
+            productList.insertAdjacentHTML('beforeend', drinkHtml);
         });
 
         // Aggiungi gli eventi per i preferiti alle nuove card
@@ -64,8 +88,8 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
         document.querySelectorAll(".card").forEach(card => {
             card.addEventListener("click", (event) => {
                 if (!event.target.closest('.favorite-icon')) {
-                    const drinkName = card.querySelector('.card-title').textContent;
-                    window.location.href = `drink.html?name=${encodeURIComponent(drinkName)}`;
+                    const drinkId = card.closest('.drink-item').getAttribute('data-drink-id');
+                    window.location.href = `drink.html?id=${encodeURIComponent(drinkId)}`;
                 }
             });
         });
@@ -109,22 +133,6 @@ document.getElementById("searchInput").addEventListener("keypress", (event) => {
         filterDrinks();
     }
 });
-
-function createDrinkCard(drink) {
-    return `
-        <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="${drink.strDrink.toLowerCase()}">
-            <div class="card text-center">
-                <img class="card-img-top" src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
-                <div class="card-body">
-                    <h5 class="card-title">${drink.strDrink}</h5>
-                    <div class="favorite-icon">
-                        <i class="far fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-}
 
 // Quando aggiungi le nuove card al container
 function displayDrinks(drinks) {

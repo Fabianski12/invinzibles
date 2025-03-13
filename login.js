@@ -215,6 +215,7 @@ function handleSignup() {
     });
 }
 
+
 // Aggiungiamo anche una funzione per il logout
 function handleLogout() {
     localStorage.removeItem('userEmail');

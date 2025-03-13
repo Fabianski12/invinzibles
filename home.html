@@ -83,50 +83,69 @@
             </p>
         </div>
 
-        <button onclick="logout()">Logout</button>
+        <button id="authButton"></button>
+
     </div>
 
     <script>
-        // Funzione per caricare i dati dell'utente dal database
-        async function loadUserData() {
-            try {
-                const userEmail = localStorage.getItem('userEmail');
-                console.log("Email nel localStorage:", userEmail); // Debug
-                
-                if (!userEmail) {
-                    throw new Error('Email non trovata nel localStorage');
+        
+            document.addEventListener("DOMContentLoaded", function () {
+                updateAuthButton();
+            });
+
+            function updateAuthButton() {
+                const isLoggedIn = localStorage.getItem('userLoggedIn') === "true";
+                const authButton = document.getElementById('authButton');
+                if (authButton) { // Verifica che il pulsante esista
+                    if (isLoggedIn) {
+                        authButton.textContent = "Logout";
+                        authButton.onclick = logout;
+                    } else {
+                        authButton.textContent = "Login";
+                        authButton.onclick = () => window.location.href = 'login.html';
+                    }
                 }
-
-                // Otteniamo il numero di drink preferiti dal localStorage
-                const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-                const favoriteDrinksCount = favorites.length;
-
-                const response = await fetch(`/api/user/data?email=${encodeURIComponent(userEmail)}`);
-                console.log("Risposta server:", response); // Debug
-
-                if (!response.ok) {
-                    throw new Error(`Errore server: ${response.status}`);
-                }
-
-                const userData = await response.json();
-                console.log("Dati ricevuti:", userData); // Debug
-
-                document.getElementById('userEmail').textContent = userData.email;
-                document.getElementById('lastLogin').textContent = userData.currentDateTime;
-                document.getElementById('favoriteDrinks').textContent = favoriteDrinksCount;
-            } catch (error) {
-                console.error('Errore dettagliato:', error);
-                alert('Errore: ' + error.message);
             }
-        }
 
-        function logout() {
-            // Rimuoviamo solo lo stato di login mantenendo i dati dell'account
-            localStorage.removeItem('isLoggedIn');
-            
-            // Reindirizza alla pagina di login
-            window.location.href = 'login.html';
-        }
+            function logout() {
+                // Rimuoviamo i dati utente al logout
+                localStorage.removeItem('userLoggedIn');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('favorites');
+
+                // Reindirizza alla pagina di login
+                window.location.href = 'login.html';
+            }
+
+            async function loadUserData() {
+                try {
+                    const isLoggedIn = localStorage.getItem('userLoggedIn');
+                    const userEmail = localStorage.getItem('userEmail');
+
+                    if (isLoggedIn !== "true" || !userEmail) {
+                        document.getElementById('userEmail').textContent = "Non disponibile";
+                        document.getElementById('favoriteDrinks').textContent = "0";
+                        return;
+                    }
+
+                    // Otteniamo il numero di drink preferiti
+                    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                    document.getElementById('favoriteDrinks').textContent = favorites.length;
+
+                    // Recupero dati utente
+                    const response = await fetch(`/api/user/data?email=${encodeURIComponent(userEmail)}`);
+                    if (!response.ok) throw new Error(`Errore server: ${response.status}`);
+
+                    const userData = await response.json();
+                    document.getElementById('userEmail').textContent = userData.email;
+                    document.getElementById('lastLogin').textContent = userData.currentDateTime;
+                } catch (error) {
+                    console.error('Errore:', error);
+                    document.getElementById('userEmail').textContent = "Errore nel caricamento";
+                }
+            }
+
+
 
         // Carica i dati dell'utente quando la pagina si apre
         loadUserData();

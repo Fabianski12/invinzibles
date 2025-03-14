@@ -43,12 +43,6 @@ const leaderboardList = document.getElementById('leaderboard-list');
 startButton.addEventListener('click', startGame);
 
 async function startGame() {
-    const playerName = playerNameInput.value.trim();
-    if (playerName === '') {
-        alert('Per favore inserisci il tuo nome per iniziare!');
-        return;
-    }
-
     // Carica tutti i drink se non sono già stati caricati
     if (allDrinks.length === 0) {
         welcomeScreen.innerHTML += '<div class="loading">Caricamento drink...</div>';
@@ -62,10 +56,11 @@ async function startGame() {
         }
     }
 
-    currentPlayer = playerName;
+    // Inizializza il gioco
+    currentPlayer = playerNameInput.value.trim();
     score = 0;
-    welcomeScreen.style.display = 'none';
-    gameScreen.style.display = 'block';
+    welcomeScreen.style.display = "none";
+    gameScreen.style.display = "block";
     playerDisplay.textContent = currentPlayer;
     scoreDisplay.textContent = score;
     
@@ -169,23 +164,39 @@ function showGameOver() {
 function restartGame() {
     if (timer) clearInterval(timer);
     
+    // Resetta tutte le variabili di gioco
     score = 0;
-    scoreDisplay.textContent = score;
-    resultScreen.style.display = 'none';
+    timeLeft = 15;
+    allDrinks = []; // Forza il ricaricamento dei drink
+    
+    // Aggiorna i display
+    scoreDisplay.textContent = '0';
+    timeDisplay.textContent = '15';
+    
+    // Nascondi le schermate di gioco e risultato
     gameScreen.style.display = 'none';
+    resultScreen.style.display = 'none';
+    
+    // Mostra la schermata iniziale
     welcomeScreen.style.display = 'block';
     
+    // Pulisci il campo del nome
     playerNameInput.value = '';
-    playerNameInput.focus();
+    playerDisplay.textContent = '';
     
+    // Rimuovi le classi dalle carte
     const allCards = document.querySelectorAll('.game-card');
-    allCards.forEach(card => card.classList.remove('correct', 'wrong'));
+    allCards.forEach(card => {
+        card.classList.remove('correct', 'wrong');
+    });
 }
 
+// Funzione per aggiornare il timer
 function updateTimer() {
     timeDisplay.textContent = timeLeft;
 }
 
+// Funzione per salvare il punteggio
 function saveScore() {
     if (score > 0) {
         sessionScores.push({
@@ -198,6 +209,7 @@ function saveScore() {
     }
 }
 
+// Funzione per aggiornare la classifica
 function updateLeaderboard() {
     leaderboardList.innerHTML = sessionScores
         .map((entry, index) => `
@@ -213,4 +225,18 @@ function updateLeaderboard() {
             </div>
         `)
         .join('');
-} 
+}
+
+// Aggiungi l'evento per il pulsante "Gioca"
+document.getElementById("start-game").addEventListener("click", function() {
+    const playerName = playerNameInput.value.trim();
+    if (playerName) {
+        currentPlayer = playerName;
+        playerDisplay.textContent = currentPlayer;
+        welcomeScreen.style.display = "none";
+        gameScreen.style.display = "block";
+        startGame();
+    } else {
+        alert("Per favore, inserisci il tuo nome!");
+    }
+}); 

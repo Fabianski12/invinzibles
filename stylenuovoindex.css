@@ -371,9 +371,9 @@
 .procedure-section {
     margin-top: 30px;
     padding: 15px;
-    background-color: #ffffff; /* Sfondo bianco per le sezioni */
+    background-color: transparent; /* Rimuovi lo sfondo grigio */
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: none; /* Rimuovi l'ombra se non desiderata */
     text-align: center; /* Centra il testo */
 }
 
@@ -630,18 +630,18 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f8f8f8; /* Colore di sfondo chiaro */
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: transparent; /* Rimuovi lo sfondo bianco */
+    border-radius: 0; /* Rimuovi il bordo arrotondato */
+    box-shadow: none; /* Rimuovi l'ombra */
 }
 
-/* Stile per la sezione ingredienti */
+/* Stile per la sezione ingredienti e procedimento */
 .ingredients-section, .procedure-section {
     margin-top: 30px;
     padding: 15px;
-    background-color: #ffffff; /* Sfondo bianco per le sezioni */
+    background-color: transparent; /* Rimuovi lo sfondo grigio */
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: none; /* Rimuovi l'ombra se non desiderata */
 }
 
 /* Stile per la lista degli ingredienti e del procedimento */

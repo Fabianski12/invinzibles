@@ -38,11 +38,13 @@ function toggleFavorite(drinkName, imgSrc) {
         favorites.push({ name: drinkName, image: imgSrc });
         saveFavorites(favorites);
         updateFavoritesCounter();
+        showNotification(`Hai aggiunto "${drinkName}" ai preferiti!`, true);
         return true;
     } else {
         favorites.splice(index, 1);
         saveFavorites(favorites);
         updateFavoritesCounter();
+        showNotification(`Hai rimosso "${drinkName}" dai preferiti!`, false);
         return false;
     }
 }
@@ -145,24 +147,14 @@ if (window.location.pathname.includes('preferiti.html')) {
 }
 
 // Funzione per mostrare la notifica
-function showNotification(message) {
-    // Rimuovi eventuali notifiche esistenti
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
+function showNotification(message, isAdded) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.style.display = 'block';
+    notification.style.backgroundColor = isAdded ? '#d5ab30' : '#ff3b30'; // Colore verde per aggiunta, rosso per rimozione
 
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.innerHTML = `${message}`;
-    document.body.appendChild(notification);
-
-    // Aggiungi una classe per l'animazione di uscita
+    // Nascondi il pop-up dopo 3 secondi
     setTimeout(() => {
-        notification.style.animation = 'slideUp 0.3s ease-in reverse';
-        setTimeout(() => {
-            notification.remove();
-        }, 300);
-    }, 2700);
-    
+        notification.style.display = 'none';
+    }, 3000);
 } 

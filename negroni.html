@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dettagli Drink</title>
+    <title>Dettagli Drink - Negroni</title>
     <link rel="stylesheet" href="stylenuovoindex.css">
     <link rel="icon" href="Logo DrinkLab.png">
-        <link rel="stylesheet" href="stylenuovoindex.css">
-        <!-- Font per scritta DrinkLab -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
-        <!-- Aggiunta di Bootstrap per la navbar responsive -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -45,12 +42,35 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <h1  id="Negroni" class="drinkname">Negroni</h1>
+    
+    <div class="container drink-container">
+        <h1 id="Negroni" class="drinkname">Negroni</h1>
         <img id="drink-image" src="Negroni_cocktail.jpg" alt="Drink Image" class="drink-img">
-        <br>
-        <br>
-        <p id="drink-description" class="drinkdescription"></p>
-        <h3 class="ingredienti">Ingredienti:</h3>
-        <ul id="drink-ingredients" class="ingredients"></ul>
+        
+        <div class="drink-description">
+            <p>Il Negroni è un classico cocktail italiano dal gusto deciso e bilanciato, caratterizzato dalla combinazione di note amare e dolci. Nato a Firenze nei primi del '900, è un'icona dell'aperitivo, apprezzato per la sua semplicità ed eleganza.</p>
+        </div>
+        
+        <div class="ingredients-section">
+            <h3 class="ingredienti">Ingredienti:</h3>
+            <ul id="drink-ingredients" class="ingredients">
+                <li>3 cl di gin</li>
+                <li>3 cl di vermouth rosso</li>
+                <li>3 cl di bitter Campari</li>
+                <li>Ghiaccio</li>
+                <li>1 fetta di arancia (per guarnire)</li>
+            </ul>
+        </div>
+        
+        <div class="procedure-section text-center">
+            <h3 class="procedimento">Procedimento:</h3>
+            <ol id="drink-procedure" class="procedure">
+                <li>Riiempire un bicchiere old fashioned con il ghiaccio.</li>
+                <li>Versare il gin, il vermouth rosso e il Campari direttamente nel bicchiere.</li>
+                <li>Mescolare delicatamente con un bar spoon per amalgamare i sapori.</li>
+                <li>Guarnire con una fetta d’arancia e servire.</li>
+            </ol>
+        </div>
     </div>
+</body>
+</html>

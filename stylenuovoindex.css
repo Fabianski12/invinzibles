@@ -324,10 +324,10 @@
 /* Stile per drink.html */
 /* Stile per le scritte della pagina */
 .drinkname {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
     color: #d5ab30;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 /* L'immagine al centro della pagina */
@@ -340,13 +340,19 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Stile per la lista degli ingredienti */
-.drinkdescription {
-    font-size: 20px;
+/* Stile per la descrizione del drink */
+.drink-description {
+    font-size: 1.2em;
     color: #555;
     text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #ffffff; /* Sfondo bianco per la descrizione */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Stile per la lista degli ingredienti */
 .ingredienti {
     color: #444;
     text-align: center;
@@ -355,14 +361,35 @@
 
 /* Stile per la lista di ingredienti */
 .ingredients {
-    text-align: center;
-    list-style-type: none;
-    padding: 0;
-    background: #e9ecef;
-    margin: 5px 0;
-    padding: 8px;
-    border-radius: 5px;
-    font-size: 20px;
+    list-style-type: disc;
+    margin-left: 20px;
+    color: #333;
+    font-size: 1.1em;
+}
+
+/* Stile per la sezione procedimento */
+.procedure-section {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #ffffff; /* Sfondo bianco per le sezioni */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centra il testo */
+}
+
+/* Stile per il titolo delle sezioni */
+.ingredienti, .procedimento {
+    color: #d5ab30;
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+/* Stile per la descrizione del drink */
+.drinkdescription {
+    font-size: 1.1em;
+    color: #555;
+    margin-top: 10px;
 }
 
 .form-control {
@@ -596,5 +623,32 @@
     border-radius: 10px;
     margin: 2rem auto;
     max-width: 600px;
+}
+
+/* Stile per il contenitore del drink */
+.drink-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8; /* Colore di sfondo chiaro */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Stile per la sezione ingredienti */
+.ingredients-section, .procedure-section {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #ffffff; /* Sfondo bianco per le sezioni */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Stile per la lista degli ingredienti e del procedimento */
+.ingredients, .procedure {
+    list-style-position: inside;
+    padding-left: 0;
+    color: #333;
+    font-size: 1.1em;
 }
 

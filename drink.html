@@ -68,6 +68,8 @@
     </div>
     </div>
 
+    <script src="menu.js"></script>
+    <script src="recentDrinks.js"></script>
     <script>
         async function fetchDrinkDetails() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -94,6 +96,9 @@
                 document.getElementById("drink-image").src = drink.strDrinkThumb;
                 document.getElementById("drink-description").textContent = drink.strInstructions;
 
+                // Salva il drink visualizzato
+                saveViewedDrink(drink.strDrink, drink.strDrinkThumb);
+
                 const ingredientsList = document.getElementById("drink-ingredients");
                 ingredientsList.innerHTML = "";
 
@@ -114,6 +119,5 @@
 
         document.addEventListener("DOMContentLoaded", fetchDrinkDetails);
     </script>
-    <script src="menu.js"></script>
 </body>
 </html>

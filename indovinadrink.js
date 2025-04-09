@@ -155,13 +155,32 @@ function showGameOver() {
     correctDrinkName.textContent = correctDrink.name;
     
     document.querySelector('.result-buttons').innerHTML = `
-        <button id="restart-game" onclick="restartGame()">Nuova Partita</button>
+        <button id="new-game" onclick="restartGame()">Nuova Partita</button>
+        <button id="back-to-menu" onclick="backToMenu()">Torna al Menu</button>
     `;
     
     resultScreen.style.display = 'flex';
 }
 
 function restartGame() {
+    if (timer) clearInterval(timer);
+    
+    // Resetta il punteggio e il timer
+    score = 0;
+    timeLeft = 15;
+    
+    // Aggiorna i display
+    scoreDisplay.textContent = '0';
+    timeDisplay.textContent = '15';
+    
+    // Nascondi la schermata di risultato
+    resultScreen.style.display = 'none';
+    
+    // Inizia una nuova partita
+    startNewRound();
+}
+
+function backToMenu() {
     if (timer) clearInterval(timer);
     
     // Resetta tutte le variabili di gioco
@@ -189,6 +208,8 @@ function restartGame() {
     allCards.forEach(card => {
         card.classList.remove('correct', 'wrong');
     });
+    //ricarica la pagina
+    location.reload();
 }
 
 // Funzione per aggiornare il timer

@@ -38,7 +38,7 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
     function createDrinkCard(drink, ingredients) {
         return `
             <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="${drink.strDrink.toLowerCase()}" data-drink-id="${drink.idDrink}">
-                <div class="card text-center">
+                <a href="drink.html?id=${encodeURIComponent(drink.idDrink)}" class="card text-center" style="text-decoration: none; color: inherit;">
                     <img class="card-img-top" src="${drink.strDrinkThumb}" alt="${drink.strDrink}">
                     <div class="card-body">
                         <h5 class="card-title">${drink.strDrink}</h5>
@@ -46,7 +46,7 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
                             <i class="far fa-heart"></i>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         `;
     }
@@ -60,6 +60,9 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
         existingDrinks.forEach(drink => {
             productList.appendChild(drink);
         });
+
+        // Ottieni i preferiti dell'utente
+        const favorites = getFavorites();
 
         products.forEach(product => {
             const drinkHtml = createDrinkCard(product);
@@ -82,17 +85,18 @@ document.getElementById("showMoreButton").addEventListener("click", () => {
                 const isNowFavorite = toggleFavorite(drinkName, imgSrc);
                 updateFavoriteIcon(icon, isNowFavorite);
             });
+
+            // Verifica se il drink è già nei preferiti
+            const card = icon.closest('.card');
+            const drinkName = card.querySelector('.card-title').textContent;
+            const isFavorite = favorites.some(drink => drink.name === drinkName);
+            if (isFavorite) {
+                updateFavoriteIcon(icon, true);
+            }
         });
 
-        // Aggiungi gli eventi di click per la navigazione
-        document.querySelectorAll(".card").forEach(card => {
-            card.addEventListener("click", (event) => {
-                if (!event.target.closest('.favorite-icon')) {
-                    const drinkId = card.closest('.drink-item').getAttribute('data-drink-id');
-                    window.location.href = `drink.html?id=${encodeURIComponent(drinkId)}`;
-                }
-            });
-        });
+        // Non è più necessario aggiungere eventi di click per la navigazione
+        // perché ora le card sono avvolte in un tag <a> che gestisce la navigazione
 
         // Nasconde il pulsante dopo il clic
         document.getElementById("showMoreButton").style.display = "none";

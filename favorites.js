@@ -65,23 +65,37 @@ function updateFavoriteIcon(element, isFavorite) {
 
 // Inizializza gli eventi per i preferiti nella pagina index
 function initializeFavorites() {
+    console.log("Inizializzazione preferiti...");
     const favoriteIcons = document.querySelectorAll('.favorite-icon');
     const favorites = getFavorites();
     
+    console.log(`Preferiti trovati: ${favorites.length}`);
     updateFavoritesCounter();
 
     favoriteIcons.forEach(icon => {
-        const card = icon.closest('.card');
+        // Troviamo il drink-item che contiene la card
+        const drinkItem = icon.closest('.drink-item');
+        
+        // Troviamo la card (potrebbe essere un div o un a)
+        let card;
+        if (drinkItem.querySelector('a.card')) {
+            card = drinkItem.querySelector('a.card');
+        } else {
+            card = drinkItem.querySelector('.card');
+        }
+        
         const drinkName = card.querySelector('.card-title').textContent;
         const imgSrc = card.querySelector('.card-img-top').src;
 
         // Imposta lo stato iniziale
         const isFavorite = favorites.some(drink => drink.name === drinkName);
+        console.log(`Drink: ${drinkName}, È preferito: ${isFavorite}`);
         updateFavoriteIcon(icon, isFavorite);
 
         // Aggiungi l'evento click
         icon.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation(); // Previene il click sulla card
             const isNowFavorite = toggleFavorite(drinkName, imgSrc);
             updateFavoriteIcon(icon, isNowFavorite);
         });
@@ -215,4 +229,4 @@ function showNotification(message, isAdded) {
     setTimeout(() => {
         notification.style.display = 'none';
     }, 3000);
-} 
+}

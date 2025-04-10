@@ -109,7 +109,7 @@ function loadFavorites() {
     }
 
     container.innerHTML = favorites.map(drink => `
-        <div class="col-6 col-md-2 col-lg-2 drink-item">
+        <div class="col-6 col-md-2 col-lg-2 drink-item" data-name="${drink.name.toLowerCase()}">
             <div class="card text-center" style="background-color: #d5ab30;">
                 <div class="favorite-icon active">
                     <i class="fas fa-heart"></i>
@@ -127,6 +127,7 @@ function loadFavorites() {
     favoriteIcons.forEach(icon => {
         icon.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation(); // Previene il click sulla card
             const card = icon.closest('.drink-item');
             const drinkName = card.querySelector('.card-title').textContent;
             toggleFavorite(drinkName);
@@ -137,6 +138,63 @@ function loadFavorites() {
             }
         });
     });
+
+    // Aggiungi gli eventi di click per la navigazione alle pagine di descrizione
+    const cards = container.querySelectorAll('.card');
+    console.log(`Trovate ${cards.length} card da configurare`);
+    
+    cards.forEach(card => {
+        card.addEventListener('click', function(event) {
+            console.log('Card cliccata');
+            // Verifica che il click non sia sull'icona dei preferiti
+            if (!event.target.closest('.favorite-icon')) {
+                const drinkName = this.querySelector('.card-title').textContent;
+                console.log(`Drink cliccato: ${drinkName}`);
+                // Cerca l'ID del drink dall'API
+                searchDrinkIdByName(drinkName);
+            }
+        });
+    });
+}
+
+// Funzione per cercare l'ID del drink dall'API
+async function searchDrinkIdByName(drinkName) {
+    console.log(`Cercando drink: ${drinkName}`);
+    
+    // Gestione dei drink salvati localmente
+    const localDrinks = {
+        'Negroni': 'negroni.html',
+        'Margarita': 'margarita.html',
+        'Sex on the Beach': 'sexonthebeach.html',
+        'Long Island': 'longisland.html'
+    };
+
+    // Controlla se il drink è uno di quelli salvati localmente
+    if (localDrinks[drinkName]) {
+        console.log(`Drink locale trovato: ${drinkName}, reindirizzamento a ${localDrinks[drinkName]}`);
+        window.location.href = localDrinks[drinkName];
+        return;
+    }
+
+    // Per gli altri drink, cerca nell'API
+    try {
+        console.log(`Cercando drink nell'API: ${drinkName}`);
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(drinkName)}`);
+        const data = await response.json();
+        
+        if (data.drinks && data.drinks.length > 0) {
+            const drinkId = data.drinks[0].idDrink;
+            console.log(`Drink trovato nell'API: ${drinkName} con ID ${drinkId}`);
+            window.location.href = `drink.html?id=${encodeURIComponent(drinkId)}`;
+        } else {
+            // Se non troviamo il drink nell'API, mostriamo un messaggio
+            console.log(`Drink non trovato nell'API: ${drinkName}`);
+            showNotification(`Impossibile trovare i dettagli per "${drinkName}"`);
+        }
+    } catch (error) {
+        console.error("Errore nella ricerca del drink:", error);
+        showNotification("Si è verificato un errore durante la ricerca del drink");
+    }
 }
 
 // Inizializza la pagina appropriata

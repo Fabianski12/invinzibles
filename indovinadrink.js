@@ -152,7 +152,7 @@ function showGameOver() {
     resultMessage.textContent = 'Game Over!';
     resultMessage.className = 'result-message wrong';
     
-    correctDrinkName.textContent = correctDrink.name;
+    correctDrinkName.innerHTML = `<img src="${correctDrink.image}" alt="${correctDrink.name}" style="max-width: 200px; border-radius: 10px; margin: 10px 0;">`;
     
     document.querySelector('.result-buttons').innerHTML = `
         <button id="new-game" onclick="restartGame()">Nuova Partita</button>

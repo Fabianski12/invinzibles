@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         products.forEach(product => {
             const productCard = document.createElement("div");
-            productCard.classList.add("col-6", "col-md-2", "col-lg-2");
+            productCard.classList.add("col-6", "col-md-2", "col-lg-3");
 
             productCard.innerHTML = `
                 <div class="card-random text-center drink-card" style="background-color: #d5ab30;" data-id="${product.idDrink}">

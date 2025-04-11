@@ -14,6 +14,37 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Aggiunta di Font Awesome per le icone -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+            .navbar-collapse {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: black;
+                padding: 0.5rem;
+                border-radius: 0.375rem;
+                z-index: 1000;
+                min-width: 200px;
+            }
+            
+            .navbar-nav {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .nav-item {
+                padding: 0.5rem 0;
+            }
+            
+            .nav-link {
+                padding: 0.5rem 1rem;
+                display: flex;
+                align-items: center;
+            }
+            
+            .nav-link:hover {
+                background-color: rgba(213, 171, 48, 0.1);
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar">
@@ -37,19 +68,29 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="preferiti.html" style="color: #d5ab30;">Preferiti</a>
+                            <a class="nav-link" href="preferiti.html" style="color: #d5ab30;">
+                                <i class="fas fa-heart me-2"></i>Preferiti
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="indovinadrink.html" style="color: #d5ab30;">Indovina il Drink</a>
+                            <a class="nav-link" href="indovinadrink.html" style="color: #d5ab30;">
+                                <i class="fas fa-question-circle me-2"></i>Indovina il Drink
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="MSF.html" style="color: #d5ab30;">Mi sento Fortunato</a>
+                            <a class="nav-link" href="MSF.html" style="color: #d5ab30;">
+                                <i class="fas fa-dice me-2"></i>Mi sento Fortunato
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="drinkvisualizzati.html" style="color: #d5ab30;">Drink Visualizzati</a>
+                            <a class="nav-link" href="drinkvisualizzati.html" style="color: #d5ab30;">
+                                <i class="fas fa-history me-2"></i>Drink Visualizzati
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="home.html" style="color: #d5ab30;">Info</a>
+                            <a class="nav-link" href="home.html" style="color: #d5ab30;">
+                                <i class="fas fa-info-circle me-2"></i>Info
+                            </a>
                         </li>
                     </ul>
                 </div>
